@@ -74,5 +74,64 @@ You need Docker, Go 1.26, `curl` and `unzip`.
 ## Results
 
 <!-- results:start -->
-No runs yet.
+### Latest run
+
+[`df8fe23`](https://github.com/smolquery/smolquery/commit/df8fe2317d7bdd35252b8a44d6d7a6e26ffd3fd9) on 2026-10-12: **ok** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/38267769769))
+
+### History
+
+| date | commit | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 2026-10-12 | [`df8fe23`](https://github.com/smolquery/smolquery/commit/df8fe2317d7bdd35252b8a44d6d7a6e26ffd3fd9) | ok | 237.1 | 42173 | 71.6 | 43/43 | 134.25 | 127.36 | 2804 |
+
+<details><summary>Per-query times, latest run</summary>
+
+| query | first ms | hot ms | previous hot ms | change |
+|---|---:|---:|---:|---:|
+| Q1 | 1378 | 1239 |  |  |
+| Q2 | 2581 | 2342 |  |  |
+| Q3 | 2502 | 2458 |  |  |
+| Q4 | 2740 | 2452 |  |  |
+| Q5 | 3981 | 3983 |  |  |
+| Q6 | 4445 | 3988 |  |  |
+| Q7 | 2617 | 2446 |  |  |
+| Q8 | 2413 | 2598 |  |  |
+| Q9 | 3220 | 3208 |  |  |
+| Q10 | 3102 | 3087 |  |  |
+| Q11 | 2658 | 2609 |  |  |
+| Q12 | 2486 | 2608 |  |  |
+| Q13 | 3176 | 3075 |  |  |
+| Q14 | 3818 | 3897 |  |  |
+| Q15 | 3297 | 3345 |  |  |
+| Q16 | 3031 | 2289 |  |  |
+| Q17 | 2940 | 2895 |  |  |
+| Q18 | 2970 | 2850 |  |  |
+| Q19 | 3675 | 3563 |  |  |
+| Q20 | 3192 | 2702 |  |  |
+| Q21 | 2848 | 2564 |  |  |
+| Q22 | 2557 | 2532 |  |  |
+| Q23 | 3674 | 3260 |  |  |
+| Q24 | 4042 | 3416 |  |  |
+| Q25 | 2742 | 2707 |  |  |
+| Q26 | 3123 | 2559 |  |  |
+| Q27 | 3039 | 2476 |  |  |
+| Q28 | 2561 | 2491 |  |  |
+| Q29 | 8619 | 8158 |  |  |
+| Q30 | 2051 | 2141 |  |  |
+| Q31 | 2700 | 2540 |  |  |
+| Q32 | 2903 | 2812 |  |  |
+| Q33 | 5457 | 5533 |  |  |
+| Q34 | 4009 | 3951 |  |  |
+| Q35 | 4007 | 3957 |  |  |
+| Q36 | 2530 | 2392 |  |  |
+| Q37 | 3977 | 3720 |  |  |
+| Q38 | 3515 | 3241 |  |  |
+| Q39 | 1992 | 1960 |  |  |
+| Q40 | 2082 | 2004 |  |  |
+| Q41 | 2180 | 1904 |  |  |
+| Q42 | 1840 | 1809 |  |  |
+| Q43 | 1581 | 1599 |  |  |
+
+</details>
+
 <!-- results:end -->
