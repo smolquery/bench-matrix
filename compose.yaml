@@ -1,0 +1,60 @@
+name: bench-matrix
+
+services:
+  postgres:
+    image: postgres:17.6
+    environment:
+      POSTGRES_USER: smolquery
+      POSTGRES_PASSWORD: smolquery
+      POSTGRES_DB: smolquery
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "smolquery", "-d", "smolquery"]
+      interval: 1s
+      timeout: 2s
+      retries: 60
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  rustfs:
+    image: rustfs/rustfs:1.0.0
+    environment:
+      RUSTFS_ACCESS_KEY: bench-access
+      RUSTFS_SECRET_KEY: bench-secret-key
+      RUSTFS_ADDRESS: 0.0.0.0:9000
+      RUSTFS_CONSOLE_ENABLE: "false"
+    ports:
+      - "127.0.0.1:${RUSTFS_PORT:-9000}:9000"
+    volumes:
+      - rustfs-data:/data
+
+  smolquery:
+    image: ${SMOLQUERY_IMAGE:?set SMOLQUERY_IMAGE to the image under test}
+    mem_limit: ${SMOLQUERY_MEM_LIMIT:-12g}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rustfs:
+        condition: service_started
+    environment:
+      SMOLQUERY_API_KEY: bench
+      SMOLQUERY_ROLES: api,ingest,buffer,storage,query
+      SMOLQUERY_CATALOG: postgres:host=postgres port=5432 dbname=smolquery user=smolquery password=smolquery
+      SMOLQUERY_S3_BUCKET: smolquery-sealed
+      SMOLQUERY_S3_ENDPOINT: http://rustfs:9000
+      SMOLQUERY_S3_REGION: us-east-1
+      SMOLQUERY_S3_ACCESS_KEY_ID: bench-access
+      SMOLQUERY_S3_SECRET_ACCESS_KEY: bench-secret-key
+      SMOLQUERY_JOB_MEMORY_LIMIT: ${SMOLQUERY_JOB_MEMORY_LIMIT:-6GB}
+      SMOLQUERY_QUERY_FILE_CACHE_DIR: /cache
+      SMOLQUERY_QUERY_FILE_CACHE_MAX_BYTES: "4294967296"
+    ports:
+      - "127.0.0.1:${SMOLQUERY_PORT:-4000}:4000"
+    volumes:
+      - smolquery-data:/data
+      - smolquery-cache:/cache
+
+volumes:
+  postgres-data:
+  rustfs-data:
+  smolquery-data:
+  smolquery-cache:

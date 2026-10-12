@@ -1,0 +1,148 @@
+name: Bench
+
+on:
+  repository_dispatch:
+    types: [smolquery-main]
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: smolquery commit to bench (default the main branch head)
+        required: false
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bench
+  cancel-in-progress: false
+
+env:
+  FILES: "10"
+  SMOLQUERY_API_KEY: bench
+  IMAGE_REPO: ghcr.io/chasers/smolquery
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Resolve the commit under test
+        id: target
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED: ${{ github.event.client_payload.sha || inputs.sha }}
+        run: |
+          ref=${REQUESTED:-main}
+          sha=$(gh api "repos/smolquery/smolquery/commits/$ref" --jq .sha)
+          subject=$(gh api "repos/smolquery/smolquery/commits/$sha" --jq '.commit.message | split("\n")[0]')
+          skip=false
+          if [ "$GITHUB_EVENT_NAME" = schedule ] && grep -q "\"sha\":\"$sha\"" results/history.jsonl 2>/dev/null; then
+            skip=true
+          fi
+          {
+            echo "sha=$sha"
+            echo "image=$IMAGE_REPO:sha-$sha"
+            echo "skip=$skip"
+            echo "subject<<EOF"
+            echo "$subject"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "commit $sha: $subject (skip=$skip)"
+
+      - name: Wait for the image
+        if: steps.target.outputs.skip == 'false'
+        env:
+          IMAGE: ${{ steps.target.outputs.image }}
+        run: |
+          for _ in $(seq 1 60); do
+            if docker manifest inspect "$IMAGE" >/dev/null 2>&1; then
+              echo "found $IMAGE"
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "$IMAGE did not appear within 30 minutes"
+          exit 1
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        if: steps.target.outputs.skip == 'false'
+        with:
+          go-version-file: go.mod
+
+      - uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
+        if: steps.target.outputs.skip == 'false'
+        with:
+          path: |
+            data/hits
+            bin/duckdb
+          key: clickbench-hits-${{ env.FILES }}-v1
+
+      - name: Fetch the ClickBench data
+        if: steps.target.outputs.skip == 'false'
+        run: scripts/fetch.sh
+
+      - name: Build the harness
+        if: steps.target.outputs.skip == 'false'
+        run: go build -o bin/bench ./cmd/bench
+
+      - name: Start Postgres, RustFS and smolquery
+        if: steps.target.outputs.skip == 'false'
+        env:
+          SMOLQUERY_IMAGE: ${{ steps.target.outputs.image }}
+        run: scripts/up.sh
+
+      - name: Load bench
+        id: load
+        if: steps.target.outputs.skip == 'false'
+        continue-on-error: true
+        run: bin/bench load -files "$FILES" -out out/load.json
+
+      - name: Query bench
+        id: query
+        if: steps.load.outcome == 'success'
+        continue-on-error: true
+        run: bin/bench query -out out/query.json
+
+      - name: Collect container logs
+        if: always() && steps.target.outputs.skip == 'false'
+        env:
+          SMOLQUERY_IMAGE: ${{ steps.target.outputs.image }}
+        run: |
+          mkdir -p out
+          docker compose logs --no-color > out/compose.log 2>&1 || true
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always() && steps.target.outputs.skip == 'false'
+        with:
+          name: bench-${{ steps.target.outputs.sha }}
+          path: out/
+          retention-days: 30
+
+      - name: Publish the results
+        if: always() && steps.target.outputs.skip == 'false'
+        env:
+          SHA: ${{ steps.target.outputs.sha }}
+          SUBJECT: ${{ steps.target.outputs.subject }}
+          IMAGE: ${{ steps.target.outputs.image }}
+        run: |
+          digest=$(docker image inspect --format '{{index .RepoDigests 0}}' "$IMAGE" 2>/dev/null || true)
+          bin/bench publish -run out -sha "$SHA" -subject "$SUBJECT" -image "$IMAGE" -digest "$digest" -trigger "$GITHUB_EVENT_NAME"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results README.md
+          git commit -m "Bench smolquery ${SHA:0:7}: $SUBJECT"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((attempt * 5))
+          done
+          exit 1
+
+      - name: Fail when a bench failed
+        if: steps.load.outcome == 'failure' || steps.query.outcome == 'failure'
+        run: |
+          echo "load: ${{ steps.load.outcome }}, query: ${{ steps.query.outcome }}"
+          exit 1
