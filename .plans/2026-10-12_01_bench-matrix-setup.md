@@ -71,8 +71,9 @@ README.md          # latest run + trend table, regenerated each run
 - [x] Smoke test at 1M rows locally: load 17.0 s, seal 69 s, 43/43 queries.
 - [x] Full 10M-row local run (Docker Desktop, 8 vCPU): ingest 164 s (60.9k rows/s), seal 28 s, 43/43, hot sum 67.2 s (default distributed) or 45.1 s (`distributed: false`).
   - Fixed: the seal merge engine OOMed at its 2 GB fallback with no cgroup limit. The container now has `mem_limit: 12g`.
-- [ ] Add the dispatch step to `smolquery/smolquery` `release.yml` and docs (separate PR). Needs the `BENCH_MATRIX_TOKEN` secret.
-- [ ] Do a manual run against the current `main` SHA. Check that the results commit lands.
+- [x] Add the dispatch step to `smolquery/smolquery` `release.yml` and docs: smolquery/smolquery#473.
+- [ ] Add the `BENCH_MATRIX_TOKEN` secret to `smolquery/smolquery`, then merge #473 (user).
+- [ ] Do a manual run against the current `main` SHA (started: actions run 38267769769). Check that the results commit lands.
 - [x] Write the README: what runs, when, where results live, how to run it locally.
 
 ## Later
