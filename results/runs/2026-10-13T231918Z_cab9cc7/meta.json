@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:37f6f69e5cc12b37cfd6475248c718f618f89531e72843de45b04d3524a800f8",
+  "id": "2026-10-13T231918Z_cab9cc7",
+  "image": "ghcr.io/smolquery/smolquery:sha-cab9cc7211931ecbd2be1ae540b77b3e25bfc86c",
+  "published_at": "2026-10-13T23:19:18Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/38482887220",
+  "runner": "GitHub Actions 1000000529 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "cab9cc7211931ecbd2be1ae540b77b3e25bfc86c",
+  "subject": "fix(writer): scan columns whose stats text does not parse, count scans of committed commits only",
+  "trigger": "repository_dispatch"
+}
