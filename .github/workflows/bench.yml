@@ -21,7 +21,7 @@ concurrency:
 env:
   FILES: "10"
   SMOLQUERY_API_KEY: bench
-  IMAGE_REPO: ghcr.io/chasers/smolquery
+  IMAGE_REPOS: ghcr.io/smolquery/smolquery ghcr.io/chasers/smolquery
 
 jobs:
   bench:
@@ -45,7 +45,6 @@ jobs:
           fi
           {
             echo "sha=$sha"
-            echo "image=$IMAGE_REPO:sha-$sha"
             echo "skip=$skip"
             echo "subject<<EOF"
             echo "$subject"
@@ -57,17 +56,21 @@ jobs:
         id: image
         if: steps.target.outputs.skip == 'false'
         env:
-          IMAGE: ${{ steps.target.outputs.image }}
+          SHA: ${{ steps.target.outputs.sha }}
         run: |
           for attempt in $(seq 1 60); do
-            if output=$(docker manifest inspect "$IMAGE" 2>&1 >/dev/null); then
-              echo "found $IMAGE"
-              exit 0
-            fi
-            echo "attempt $attempt: $output"
+            for repo in $IMAGE_REPOS; do
+              image="$repo:sha-$SHA"
+              if output=$(docker manifest inspect "$image" 2>&1 >/dev/null); then
+                echo "found $image"
+                echo "image=$image" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+              echo "attempt $attempt: $image: $output"
+            done
             sleep 30
           done
-          echo "$IMAGE did not appear within 30 minutes"
+          echo "no image for $SHA appeared within 30 minutes"
           exit 1
 
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
@@ -94,7 +97,7 @@ jobs:
       - name: Start Postgres, RustFS and smolquery
         if: steps.target.outputs.skip == 'false'
         env:
-          SMOLQUERY_IMAGE: ${{ steps.target.outputs.image }}
+          SMOLQUERY_IMAGE: ${{ steps.image.outputs.image }}
         run: scripts/up.sh
 
       - name: Load bench
@@ -112,7 +115,7 @@ jobs:
       - name: Collect container logs
         if: always() && steps.image.outcome == 'success'
         env:
-          SMOLQUERY_IMAGE: ${{ steps.target.outputs.image }}
+          SMOLQUERY_IMAGE: ${{ steps.image.outputs.image }}
         run: |
           mkdir -p out
           docker compose logs --no-color > out/compose.log 2>&1 || true
@@ -129,7 +132,7 @@ jobs:
         env:
           SHA: ${{ steps.target.outputs.sha }}
           SUBJECT: ${{ steps.target.outputs.subject }}
-          IMAGE: ${{ steps.target.outputs.image }}
+          IMAGE: ${{ steps.image.outputs.image }}
         run: |
           digest=$(docker image inspect --format '{{index .RepoDigests 0}}' "$IMAGE" 2>/dev/null || true)
           bin/bench publish -run out -sha "$SHA" -subject "$SUBJECT" -image "$IMAGE" -digest "$digest" -trigger "$GITHUB_EVENT_NAME"

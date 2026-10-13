@@ -37,7 +37,8 @@ machine. That conversion shares the CPU with smolquery during the load.
 
 - **On each push to smolquery `main`.** The smolquery `release.yml` workflow
   sends a `repository_dispatch` (`smolquery-main`) with the commit SHA after it
-  pushes the image `ghcr.io/chasers/smolquery:sha-<sha>`.
+  pushes the image `ghcr.io/smolquery/smolquery:sha-<sha>`. For commits up to
+  `df8fe23`, the workflow uses the old name, `ghcr.io/chasers/smolquery`.
 - **Manually.** Run the `Bench` workflow with an optional `sha` input.
 - **Daily at 06:17 UTC.** The run benches the `main` head if no run for that
   commit exists. This catches a lost dispatch.
@@ -58,7 +59,7 @@ Runs queue one at a time. The runner is a GitHub-hosted `ubuntu-latest` machine
 
 You need Docker, Go 1.26, `curl` and `unzip`.
 
-1. Pick an image: `export SMOLQUERY_IMAGE=ghcr.io/chasers/smolquery:sha-<full sha>`.
+1. Pick an image: `export SMOLQUERY_IMAGE=ghcr.io/smolquery/smolquery:sha-<full sha>`.
 2. Run the benches: `FILES=10 scripts/run.sh`. The results go to `out/`.
 3. Stop the stack: `scripts/down.sh`.
 
