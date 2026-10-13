@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:f8c8eacfd1ac1555bdd8c4ac16e1e417ddacccdd84af5a9ba1af1eef072ebb60",
+  "id": "2026-10-13T152044Z_bdbcba4",
+  "image": "ghcr.io/smolquery/smolquery:sha-bdbcba43dabc4d1dddfc437c0fdbc12af2a0b67a",
+  "published_at": "2026-10-13T15:20:44Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/38419951440",
+  "runner": "GitHub Actions 1000000411 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "bdbcba43dabc4d1dddfc437c0fdbc12af2a0b67a",
+  "subject": "perf(buffer): write and delete spool files in raw mode",
+  "trigger": "repository_dispatch"
+}
