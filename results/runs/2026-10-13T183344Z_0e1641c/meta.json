@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:05872d1a17e92eff752dd506428692f31c96b33b85e7adea0053bdc3e0253867",
+  "id": "2026-10-13T183344Z_0e1641c",
+  "image": "ghcr.io/smolquery/smolquery:sha-0e1641c879bb27afea6e222cab36054f9da816da",
+  "published_at": "2026-10-13T18:33:44Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/38446341514",
+  "runner": "GitHub Actions 1000000463 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "0e1641c879bb27afea6e222cab36054f9da816da",
+  "subject": "Document the lag of a separate read cluster attached through a DuckLake connection (T-650)",
+  "trigger": "repository_dispatch"
+}
