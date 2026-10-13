@@ -54,6 +54,7 @@ jobs:
           echo "commit $sha: $subject (skip=$skip)"
 
       - name: Wait for the image
+        id: image
         if: steps.target.outputs.skip == 'false'
         env:
           IMAGE: ${{ steps.target.outputs.image }}
@@ -109,7 +110,7 @@ jobs:
         run: bin/bench query -out out/query.json
 
       - name: Collect container logs
-        if: always() && steps.target.outputs.skip == 'false'
+        if: always() && steps.image.outcome == 'success'
         env:
           SMOLQUERY_IMAGE: ${{ steps.target.outputs.image }}
         run: |
@@ -117,14 +118,14 @@ jobs:
           docker compose logs --no-color > out/compose.log 2>&1 || true
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        if: always() && steps.target.outputs.skip == 'false'
+        if: always() && steps.image.outcome == 'success'
         with:
           name: bench-${{ steps.target.outputs.sha }}
           path: out/
           retention-days: 30
 
       - name: Publish the results
-        if: always() && steps.target.outputs.skip == 'false'
+        if: always() && steps.image.outcome == 'success'
         env:
           SHA: ${{ steps.target.outputs.sha }}
           SUBJECT: ${{ steps.target.outputs.subject }}
