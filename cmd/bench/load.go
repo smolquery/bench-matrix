@@ -34,6 +34,7 @@ type loadConfig struct {
 	duckdb       string
 	duckThreads  int
 	duckMemory   string
+	partitions   int
 	sealWait     time.Duration
 	out          string
 	insertPrefix string
@@ -76,10 +77,11 @@ func runLoad(args []string) {
 	fs.IntVar(&cfg.files, "files", 10, "parquet files to load, hits_0 up to hits_<files-1>")
 	fs.IntVar(&cfg.pipelines, "pipelines", 2, "parquet files converted at once")
 	fs.IntVar(&cfg.workers, "workers", 8, "concurrent insert requests")
-	fs.IntVar(&cfg.batchBytes, "batch-bytes", 6_000_000, "NDJSON bytes per insert request")
+	fs.IntVar(&cfg.batchBytes, "batch-bytes", 24_000_000, "NDJSON bytes per insert request")
 	fs.StringVar(&cfg.duckdb, "duckdb", "bin/duckdb", "duckdb CLI that converts parquet to NDJSON")
 	fs.IntVar(&cfg.duckThreads, "duckdb-threads", 1, "threads per duckdb conversion")
 	fs.StringVar(&cfg.duckMemory, "duckdb-memory", "1GB", "memory limit per duckdb conversion")
+	fs.IntVar(&cfg.partitions, "partitions", 0, "table write partitions (0 = deployment default)")
 	fs.DurationVar(&cfg.sealWait, "seal-wait", 20*time.Minute, "longest wait for the hot tier to seal")
 	fs.StringVar(&cfg.out, "out", "out/load.json", "result JSON path")
 	fs.StringVar(&cfg.insertPrefix, "insert-prefix", fmt.Sprintf("bench-%d", time.Now().Unix()), "insertId prefix")
@@ -91,7 +93,7 @@ func runLoad(args []string) {
 	}
 	client := newAPI(cfg.api, 2*time.Minute)
 	ref := cfg.dataset + "." + def.ID
-	createTable(client, cfg.dataset, def)
+	createTable(client, cfg.dataset, def, cfg.partitions)
 
 	log.Printf("load: %d file(s) into %s, %d pipeline(s), %d worker(s), %d bytes per request",
 		cfg.files, ref, cfg.pipelines, cfg.workers, cfg.batchBytes)
@@ -125,6 +127,7 @@ func runLoad(args []string) {
 			"workers":        cfg.workers,
 			"batch_bytes":    cfg.batchBytes,
 			"duckdb_threads": cfg.duckThreads,
+			"partitions":     cfg.partitions,
 		},
 	}
 	writeJSON(cfg.out, result)
@@ -137,13 +140,16 @@ func runLoad(args []string) {
 	}
 }
 
-func createTable(client *api, dataset string, def tableDef) {
+func createTable(client *api, dataset string, def tableDef, partitions int) {
 	client.must(http.MethodPost, "/v1/datasets", map[string]any{"id": dataset})
 	client.must(http.MethodPost, "/v1/datasets/"+dataset+"/tables", map[string]any{"id": def.ID, "schema": def.Schema})
 	if len(def.Clustering) > 0 {
 		client.must(http.MethodPatch, "/v1/datasets/"+dataset+"/tables/"+def.ID, map[string]any{"clustering": def.Clustering})
 	}
-	log.Printf("load: table %s.%s ready, clustering %v", dataset, def.ID, def.Clustering)
+	if partitions > 0 {
+		client.must(http.MethodPatch, "/v1/datasets/"+dataset+"/tables/"+def.ID, map[string]any{"partitions": partitions})
+	}
+	log.Printf("load: table %s.%s ready, clustering %v, partitions %d", dataset, def.ID, def.Clustering, partitions)
 }
 
 func ingestFiles(cfg loadConfig, table string) map[string]any {

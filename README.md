@@ -23,6 +23,10 @@ The stack is one smolquery node, configured like a production node:
 - **Memory:** a 12 GB container limit (`SMOLQUERY_MEM_LIMIT`). smolquery sizes
   its storage engines from the cgroup limit, as it does in a Kubernetes pod.
 - **Job memory:** `SMOLQUERY_JOB_MEMORY_LIMIT=6GB`.
+- **Ingest:** 24 MB NDJSON bodies over 8 concurrent requests. The insert body
+  cap is 32 MB (`SMOLQUERY_INSERT_MAX_NDJSON_BYTES`). The group-commit flush
+  trigger is 32 MB (`SMOLQUERY_FLUSH_MAX_BYTES`), and the buffer ceiling is
+  256 MB (`SMOLQUERY_MAX_BUFFERED_BYTES`).
 
 `compose.yaml` holds the full configuration.
 
@@ -58,7 +62,9 @@ You need Docker, Go 1.26, `curl` and `unzip`.
 2. Run the benches: `FILES=10 scripts/run.sh`. The results go to `out/`.
 3. Stop the stack: `scripts/down.sh`.
 
-`FILES` sets the number of 1M-row parquet files (default 10). If ports 4000 or
+`FILES` sets the number of 1M-row parquet files (default 10). The ingest
+variables in `compose.yaml` read from the environment, so you can override
+them for a local run. If ports 4000 or
 9000 are in use, set `SMOLQUERY_PORT` and `RUSTFS_PORT`.
 
 ## Layout
