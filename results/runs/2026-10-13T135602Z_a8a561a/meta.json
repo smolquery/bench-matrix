@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:d8d406aab6886fdddf8d664456aca4444c8e0457679843f2a8d5507e22dc9dab",
+  "id": "2026-10-13T135602Z_a8a561a",
+  "image": "ghcr.io/smolquery/smolquery:sha-a8a561acada383ac4290324eb7c57203b5d8e5f3",
+  "published_at": "2026-10-13T13:56:02Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/38405413514",
+  "runner": "GitHub Actions 1000000395 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "a8a561acada383ac4290324eb7c57203b5d8e5f3",
+  "subject": "Point the repository and image references at the smolquery organization (#464)",
+  "trigger": "repository_dispatch"
+}
