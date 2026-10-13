@@ -28,4 +28,8 @@ The user accepted about 100k rows/s and stopped the sweep before the 48 MB and 6
 - [x] Measure the DuckDB conversion alone.
 - [x] Measure the server under a 4-CPU pin: workers, body size, flush size, partitions.
 - [x] Set the defaults: `-batch-bytes 24000000`, `SMOLQUERY_INSERT_MAX_NDJSON_BYTES=32000000`, `SMOLQUERY_FLUSH_MAX_BYTES=32000000`, `SMOLQUERY_MAX_BUFFERED_BYTES=256000000`.
-- [ ] Confirm on a GitHub runner (baseline there: 42k rows/s).
+- [x] Confirm on a GitHub runner, same commit `df8fe23`: ingest 42.2k → 63.7k rows/s (+51%), seal 71 → 70 s, hot sum 127 → 84 s. 19 of 987 requests got a 429 and succeeded on retry.
+
+## Open
+
+- smolquery `release.yml` cannot push `ghcr.io/chasers/smolquery` since the repo moved to the `smolquery` org (`permission_denied: The requested installation does not exist`, run 38333094929). No new commit gets an image until the image moves to the org namespace.
