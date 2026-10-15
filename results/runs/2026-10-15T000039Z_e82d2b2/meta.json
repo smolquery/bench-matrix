@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:44b7adcb1b172505212b39dab48d8d9cad64248f9990a8f2eedbf6c329f11ad2",
+  "id": "2026-10-15T000039Z_e82d2b2",
+  "image": "ghcr.io/smolquery/smolquery:sha-e82d2b2bea18987e8efb09d46ebeeed363849a98",
+  "published_at": "2026-10-15T00:00:39Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/38656685478",
+  "runner": "GitHub Actions 1000000657 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "e82d2b2bea18987e8efb09d46ebeeed363849a98",
+  "subject": "hex.audit checks advisories too: ignore EEF-CVE-2026-105659 in the project's hex config, the step that failed first in mix ci",
+  "trigger": "repository_dispatch"
+}

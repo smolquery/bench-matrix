@@ -1,0 +1,39 @@
+{
+  "config": {
+    "batch_bytes": 24000000,
+    "duckdb_threads": 1,
+    "partitions": 0,
+    "pipelines": 2,
+    "workers": 8
+  },
+  "files": 10,
+  "hot_files_left": 0,
+  "ingest": {
+    "data_sent_mib": 22141.806483268738,
+    "duration_s": 144.793388657,
+    "latency_ms": {
+      "max": 2844.369,
+      "p50": 1131.13,
+      "p90": 1679.566,
+      "p99": 2127.2917500000003
+    },
+    "mib_per_s": 152.92001028942212,
+    "requests": 974,
+    "responses": {
+      "200": 968,
+      "429": 6
+    },
+    "retries_429": 6,
+    "retries_other": 0,
+    "rows_accepted": 10000000,
+    "rows_failed": 0,
+    "rows_per_s": 69063.92683224595,
+    "rows_read": 10000000,
+    "rows_rejected": 0
+  },
+  "rows_counted": 10000000,
+  "rows_expected": 10000000,
+  "seal_s": 25.398021827,
+  "table": "bench.hits",
+  "total_s": 170.19141048400002
+}
