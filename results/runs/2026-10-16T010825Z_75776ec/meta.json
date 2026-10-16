@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:f061e69edf7fa4f5a28ad4c7e49fd401a3393ef8d1b82313465ad78ed96c2840",
+  "id": "2026-10-16T010825Z_75776ec",
+  "image": "ghcr.io/smolquery/smolquery:sha-75776ecb5a96042def8a7bc5c6f9ff45e42d5f5b",
+  "published_at": "2026-10-16T01:08:25Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/38832639073",
+  "runner": "GitHub Actions 1000000754 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "75776ecb5a96042def8a7bc5c6f9ff45e42d5f5b",
+  "subject": "Review of T-501: the new rewrite rules leave SQL HyperDX does not write alone, and an Int128 is quoted like an Int64",
+  "trigger": "repository_dispatch"
+}
