@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:6415b2859673d72e31119f57ced768c79846fcda4e22bacdb16ea4981e47f7dd",
+  "id": "2026-10-17T152152Z_5a257da",
+  "image": "ghcr.io/smolquery/smolquery:sha-5a257daa5c726892b19f5933d6ab75b4bd47cb50",
+  "published_at": "2026-10-17T15:21:52Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39044277439",
+  "runner": "GitHub Actions 1000000853 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "5a257daa5c726892b19f5933d6ab75b4bd47cb50",
+  "subject": "Shard spans after review: outcome on gather and merge, engine source and worker total in the timings, sealed_bytes (T-691)",
+  "trigger": "repository_dispatch"
+}
