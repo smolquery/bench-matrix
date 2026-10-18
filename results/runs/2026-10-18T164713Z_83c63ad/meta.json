@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:e53361ad7f411b36b14c834ddc4bd56e8d8af7e3a9d84d92d0da07117c047545",
+  "id": "2026-10-18T164713Z_83c63ad",
+  "image": "ghcr.io/smolquery/smolquery:sha-83c63ad0427ad528f52ec879e6b0d9026b02c733",
+  "published_at": "2026-10-18T16:47:13Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39145928157",
+  "runner": "GitHub Actions 1000001035 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "83c63ad0427ad528f52ec879e6b0d9026b02c733",
+  "subject": "Review of T-699: a signed health check, a bounded bucket hook, no bucket step in mise",
+  "trigger": "repository_dispatch"
+}
