@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:69f14ad9f5995db4702ae9e4eb10cf67c9ee6ff705dd1228953d307bbaa66920",
+  "id": "2026-10-18T182249Z_76cea1a",
+  "image": "ghcr.io/smolquery/smolquery:sha-76cea1a524f7d04ef2cf9d7310f0d076a4aeb11e",
+  "published_at": "2026-10-18T18:22:49Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39153224354",
+  "runner": "GitHub Actions 1000001100 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "76cea1a524f7d04ef2cf9d7310f0d076a4aeb11e",
+  "subject": "Shard lockdown after review: a directory the shard makes itself, under the spill root, named by OS process (T-690)",
+  "trigger": "repository_dispatch"
+}
