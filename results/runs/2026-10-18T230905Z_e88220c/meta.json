@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:0a5a594de80db6d4492b2d2f1a8885a47c675f6d610d98e12e8a7ff4e17cf6a3",
+  "id": "2026-10-18T230905Z_e88220c",
+  "image": "ghcr.io/smolquery/smolquery:sha-e88220c6c8fcd2a971fb946a6587ec5095e5b4bc",
+  "published_at": "2026-10-18T23:09:05Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39175215344",
+  "runner": "GitHub Actions 1000001118 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "e88220c6c8fcd2a971fb946a6587ec5095e5b4bc",
+  "subject": "Tree merge after review: a true byte bound, two shards per level, groups and leftovers from one place (T-700)",
+  "trigger": "repository_dispatch"
+}

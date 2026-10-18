@@ -83,12 +83,13 @@ them for a local run. If ports 4000 or
 <!-- results:start -->
 ### Latest run
 
-[`c1d88b0`](https://github.com/smolquery/smolquery/commit/c1d88b02c47263ed2317551a876741b6ecb632a0) on 2026-10-18: **ok** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/39154034621))
+[`e88220c`](https://github.com/smolquery/smolquery/commit/e88220c6c8fcd2a971fb946a6587ec5095e5b4bc) on 2026-10-18: **load_failed** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/39175215344))
 
 ### History
 
 | date | commit | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 2026-10-18 | [`e88220c`](https://github.com/smolquery/smolquery/commit/e88220c6c8fcd2a971fb946a6587ec5095e5b4bc) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
 | 2026-10-18 | [`c1d88b0`](https://github.com/smolquery/smolquery/commit/c1d88b02c47263ed2317551a876741b6ecb632a0) | ok | 156.3 | 63972 | 25.3 | 43/43 | 96.24 | 91.54 | 1772 |
 | 2026-10-18 | [`76cea1a`](https://github.com/smolquery/smolquery/commit/76cea1a524f7d04ef2cf9d7310f0d076a4aeb11e) | ok | 140.0 | 71453 | 64.8 | 43/43 | 93.12 | 87.97 | 1700 |
 | 2026-10-18 | [`761787f`](https://github.com/smolquery/smolquery/commit/761787fdcd3bfed79d502a5cddca4b50f4cfb3bc) | ok | 147.6 | 67770 | 30.8 | 43/43 | 38.99 | 36.98 | 716 |
@@ -108,55 +109,5 @@ them for a local run. If ports 4000 or
 | 2026-10-13 | [`a8a561a`](https://github.com/smolquery/smolquery/commit/a8a561acada383ac4290324eb7c57203b5d8e5f3) | ok | 139.9 | 71492 | 15.7 | 43/43 | 78.78 | 70.66 | 1378 |
 | 2026-10-13 | [`df8fe23`](https://github.com/smolquery/smolquery/commit/df8fe2317d7bdd35252b8a44d6d7a6e26ffd3fd9) | ok | 157.0 | 63683 | 70.1 | 43/43 | 88.08 | 84.80 | 1650 |
 | 2026-10-12 | [`df8fe23`](https://github.com/smolquery/smolquery/commit/df8fe2317d7bdd35252b8a44d6d7a6e26ffd3fd9) | ok | 237.1 | 42173 | 71.6 | 43/43 | 134.25 | 127.36 | 2804 |
-
-<details><summary>Per-query times, latest run</summary>
-
-| query | first ms | hot ms | previous hot ms | change |
-|---|---:|---:|---:|---:|
-| Q1 | 366 | 359 | 350 | +3% |
-| Q2 | 1650 | 1631 | 1510 | +8% |
-| Q3 | 1761 | 1677 | 1597 | +5% |
-| Q4 | 1779 | 1612 | 1546 | +4% |
-| Q5 | 3122 | 3014 | 2568 | +17% |
-| Q6 | 3145 | 2993 | 2694 | +11% |
-| Q7 | 1763 | 1276 | 1636 | -22% |
-| Q8 | 1889 | 1638 | 1582 | +4% |
-| Q9 | 2238 | 2095 | 2070 | +1% |
-| Q10 | 2164 | 2156 | 2186 | -1% |
-| Q11 | 1795 | 1675 | 1745 | -4% |
-| Q12 | 1894 | 1770 | 1431 | +24% |
-| Q13 | 2126 | 2128 | 2041 | +4% |
-| Q14 | 2609 | 2551 | 2411 | +6% |
-| Q15 | 2195 | 2268 | 2232 | +2% |
-| Q16 | 2042 | 1932 | 1849 | +4% |
-| Q17 | 2632 | 2607 | 2573 | +1% |
-| Q18 | 2555 | 2486 | 2471 | +1% |
-| Q19 | 3315 | 3304 | 3155 | +5% |
-| Q20 | 808 | 741 | 610 | +21% |
-| Q21 | 2416 | 2202 | 2160 | +2% |
-| Q22 | 2222 | 2132 | 2126 | +0% |
-| Q23 | 3092 | 2894 | 2638 | +10% |
-| Q24 | 2727 | 2152 | 1902 | +13% |
-| Q25 | 823 | 779 | 779 | +0% |
-| Q26 | 734 | 764 | 729 | +5% |
-| Q27 | 775 | 765 | 734 | +4% |
-| Q28 | 2190 | 2126 | 2175 | -2% |
-| Q29 | 9819 | 9090 | 8420 | +8% |
-| Q30 | 1747 | 1685 | 1758 | -4% |
-| Q31 | 2250 | 2170 | 2099 | +3% |
-| Q32 | 2602 | 2355 | 2330 | +1% |
-| Q33 | 5181 | 5193 | 5085 | +2% |
-| Q34 | 3700 | 3440 | 3484 | -1% |
-| Q35 | 3631 | 3616 | 3509 | +3% |
-| Q36 | 2236 | 2192 | 2145 | +2% |
-| Q37 | 2294 | 2292 | 2220 | +3% |
-| Q38 | 2051 | 2055 | 2024 | +2% |
-| Q39 | 735 | 800 | 669 | +20% |
-| Q40 | 1028 | 956 | 900 | +6% |
-| Q41 | 707 | 678 | 641 | +6% |
-| Q42 | 694 | 630 | 578 | +9% |
-| Q43 | 736 | 658 | 612 | +8% |
-
-</details>
 
 <!-- results:end -->
