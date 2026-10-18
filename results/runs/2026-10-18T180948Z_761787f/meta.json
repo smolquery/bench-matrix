@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:c4f13c700108a781c93a099dfa1cd457de6b0e200371049c0c71e735a54c27d7",
+  "id": "2026-10-18T180948Z_761787f",
+  "image": "ghcr.io/smolquery/smolquery:sha-761787fdcd3bfed79d502a5cddca4b50f4cfb3bc",
+  "published_at": "2026-10-18T18:09:48Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39152447799",
+  "runner": "GitHub Actions 1000001096 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "761787fdcd3bfed79d502a5cddca4b50f4cfb3bc",
+  "subject": "A SQLite catalog runs in WAL mode, and every catalog write retries a lock (T-698)",
+  "trigger": "repository_dispatch"
+}
