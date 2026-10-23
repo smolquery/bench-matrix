@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:4ab6c109f0fea9b60e5002c94e084c7d3189cae133644487d8baaca499356b15",
+  "id": "2026-10-23T152503Z_e7913f1",
+  "image": "ghcr.io/smolquery/smolquery:sha-e7913f17469cbd3a5d395bd73ab8f346f221f751",
+  "published_at": "2026-10-23T15:25:03Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39976517138",
+  "runner": "GitHub Actions 1000001418 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "e7913f17469cbd3a5d395bd73ab8f346f221f751",
+  "subject": "Bump plug_crypto to 2.2.1 for CVE-2026-105963 (T-711)",
+  "trigger": "repository_dispatch"
+}
