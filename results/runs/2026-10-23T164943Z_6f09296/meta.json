@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:b960903d5101f996ba289f0d148b68ad14185ca7c81b26489bdeff7b3b00de7c",
+  "id": "2026-10-23T164943Z_6f09296",
+  "image": "ghcr.io/smolquery/smolquery:sha-6f092961fd8c3bcd6bf216064c46563ba9d7677b",
+  "published_at": "2026-10-23T16:49:43Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39988782231",
+  "runner": "GitHub Actions 1000001496 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "6f092961fd8c3bcd6bf216064c46563ba9d7677b",
+  "subject": "A 0 ms catalog window checks every statement (T-715)",
+  "trigger": "repository_dispatch"
+}
