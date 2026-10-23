@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:f3e447b8fb1cde47561e2499e7ba7d6be9479ee1cda2a4d61dcc30fd33a0d4b0",
+  "id": "2026-10-23T173755Z_4b1e422",
+  "image": "ghcr.io/smolquery/smolquery:sha-4b1e4220327f5db42b63d6e4a042ef7f24b879c9",
+  "published_at": "2026-10-23T17:37:55Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/39995356127",
+  "runner": "GitHub Actions 1000001543 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "4b1e4220327f5db42b63d6e4a042ef7f24b879c9",
+  "subject": "cache_httpfs is published for 2.0.0: the image installs it again (T-395)",
+  "trigger": "repository_dispatch"
+}
