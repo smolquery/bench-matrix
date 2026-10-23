@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:ed832d771c94673d701f2c2397755a045816ffae54710860254ce53b07d5c1a1",
+  "id": "2026-10-23T215537Z_2434d95",
+  "image": "ghcr.io/smolquery/smolquery:sha-2434d95501910f86b8b2b2b0a0a4772e5f564795",
+  "published_at": "2026-10-23T21:55:37Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40028729264",
+  "runner": "GitHub Actions 1000001620 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "2434d95501910f86b8b2b2b0a0a4772e5f564795",
+  "subject": "A shard describes its files on up to 4 connections at once, as DuckDB 1.5 did on its threads (T-719)",
+  "trigger": "repository_dispatch"
+}
