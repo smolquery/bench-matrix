@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:a67e5ef1a54394adaa3e4216b0f4865621d469933d17d1eadc493560f98284ba",
+  "id": "2026-10-24T024454Z_19d0758",
+  "image": "ghcr.io/smolquery/smolquery:sha-19d0758b48fca9103fc63cc7318d0b77cd9ccd52",
+  "published_at": "2026-10-24T02:44:54Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40054806722",
+  "runner": "GitHub Actions 1000001738 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "19d0758b48fca9103fc63cc7318d0b77cd9ccd52",
+  "subject": "Two timing tests wait for what they depend on (T-725)",
+  "trigger": "repository_dispatch"
+}
