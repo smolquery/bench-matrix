@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:81830c78b5a106e16374cd286fbb251a2986a76d0c19aaa5dd465cec15222c3c",
+  "id": "2026-10-24T015714Z_d171282",
+  "image": "ghcr.io/smolquery/smolquery:sha-d17128269fb3a9a0fb47e224fb1b9851120337a4",
+  "published_at": "2026-10-24T01:57:14Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40051389832",
+  "runner": "GitHub Actions 1000001707 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "d17128269fb3a9a0fb47e224fb1b9851120337a4",
+  "subject": "An INTERVAL result answers as its text instead of crashing Polars (T-728)",
+  "trigger": "repository_dispatch"
+}
