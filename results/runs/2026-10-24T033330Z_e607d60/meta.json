@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:7e6c10315be0ac024e39eee66edc008b29abce803b31c15fc6bd52ca8c1f8dab",
+  "id": "2026-10-24T033330Z_e607d60",
+  "image": "ghcr.io/smolquery/smolquery:sha-e607d60c25050fe60085121e6edf31c4f1fa4024",
+  "published_at": "2026-10-24T03:33:30Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40058200008",
+  "runner": "GitHub Actions 1000001764 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "e607d60c25050fe60085121e6edf31c4f1fa4024",
+  "subject": "A query/4 statement is cancelled like a frame read, and tests hold it (T-726)",
+  "trigger": "repository_dispatch"
+}
