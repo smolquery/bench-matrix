@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:fdcd332826c031e7ea82fb0d7e1f92bcb32992b590e90d80ee18651c980b3b9c",
+  "id": "2026-10-26T004025Z_309425e",
+  "image": "ghcr.io/smolquery/smolquery:sha-309425e8ee69198a531074e21398b6136b0054bf",
+  "published_at": "2026-10-26T00:40:25Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40249775552",
+  "runner": "GitHub Actions 1000001904 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "309425e8ee69198a531074e21398b6136b0054bf",
+  "subject": "Bump to 0.29.1",
+  "trigger": "repository_dispatch"
+}
