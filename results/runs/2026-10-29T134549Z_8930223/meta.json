@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:d03291865d5e627f97e6d5240fbfda0456b62c03d827ccc0ee88efebce8e48a6",
+  "id": "2026-10-29T134549Z_8930223",
+  "image": "ghcr.io/smolquery/smolquery:sha-8930223fa562009fe73c41f658aad90da6e715ba",
+  "published_at": "2026-10-29T13:45:49Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40884744255",
+  "runner": "GitHub Actions 1000002012 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "8930223fa562009fe73c41f658aad90da6e715ba",
+  "subject": "Docs: tuning the hot tier when sealing falls behind (T-742)",
+  "trigger": "repository_dispatch"
+}
