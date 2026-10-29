@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:95a1af350cb2ea9d66484a924345f62ba3c59be07b833bb2a197f6c33e47f16a",
+  "id": "2026-10-29T131144Z_f3b0d5d",
+  "image": "ghcr.io/smolquery/smolquery:sha-f3b0d5d32e6dde598f54e6a1eaba65a42949e432",
+  "published_at": "2026-10-29T13:11:44Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40878718242",
+  "runner": "GitHub Actions 1000002003 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "f3b0d5d32e6dde598f54e6a1eaba65a42949e432",
+  "subject": "A skill follows up on the GitHub threads we take part in",
+  "trigger": "schedule"
+}
