@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:11a8a2e58efc0d4542baf36a0ed75b86dbedfa7f44c9f79766886ef4d82b9f47",
+  "id": "2026-10-29T155859Z_5dc2144",
+  "image": "ghcr.io/smolquery/smolquery:sha-5dc21443fa37ae2ab8cef41e0e9a6cf0f1bf00b0",
+  "published_at": "2026-10-29T15:58:59Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/40906853910",
+  "runner": "GitHub Actions 1000002028 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "5dc21443fa37ae2ab8cef41e0e9a6cf0f1bf00b0",
+  "subject": "The describe always puts insertion order back, and a file's schema rows must walk as one tree (T-759 review)",
+  "trigger": "repository_dispatch"
+}
