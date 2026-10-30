@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:5a848c3a5f5af47767308dc1e5e18c484e26fad0421a8a208afd7994c594ab89",
+  "id": "2026-10-30T231607Z_d675422",
+  "image": "ghcr.io/smolquery/smolquery:sha-d6754225a32fdeb4e7188263728fe2476bbe28cf",
+  "published_at": "2026-10-30T23:16:07Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/41143335646",
+  "runner": "GitHub Actions 1000002039 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "d6754225a32fdeb4e7188263728fe2476bbe28cf",
+  "subject": "ssl_verify_fun 1.1.8 and phoenix_html 4.4.0, which fix the advisories mix ci now fails on",
+  "trigger": "repository_dispatch"
+}
