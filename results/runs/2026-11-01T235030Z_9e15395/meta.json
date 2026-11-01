@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:3a855052d40a3f5773b258f5365b44084016746410aaf80b418a27706e406450",
+  "id": "2026-11-01T235030Z_9e15395",
+  "image": "ghcr.io/smolquery/smolquery:sha-9e153953c61e06847301103db4b70ebdb0dcca23",
+  "published_at": "2026-11-01T23:50:30Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/41363219969",
+  "runner": "GitHub Actions 1000002057 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "9e153953c61e06847301103db4b70ebdb0dcca23",
+  "subject": "The page cap docs warn about seals too, and say what a hung COPY blocks (T-757 review)",
+  "trigger": "repository_dispatch"
+}

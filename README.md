@@ -83,12 +83,13 @@ them for a local run. If ports 4000 or
 <!-- results:start -->
 ### Latest run
 
-[`d675422`](https://github.com/smolquery/smolquery/commit/d6754225a32fdeb4e7188263728fe2476bbe28cf) on 2026-10-30: **load_failed** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/41143335646))
+[`9e15395`](https://github.com/smolquery/smolquery/commit/9e153953c61e06847301103db4b70ebdb0dcca23) on 2026-11-01: **ok** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/41363219969))
 
 ### History
 
 | date | commit | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 2026-11-01 | [`9e15395`](https://github.com/smolquery/smolquery/commit/9e153953c61e06847301103db4b70ebdb0dcca23) | ok | 174.0 | 57485 | 56.4 | 43/43 | 115.11 | 112.43 | 2269 |
 | 2026-10-30 | [`d675422`](https://github.com/smolquery/smolquery/commit/d6754225a32fdeb4e7188263728fe2476bbe28cf) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
 | 2026-10-29 | [`5dc2144`](https://github.com/smolquery/smolquery/commit/5dc21443fa37ae2ab8cef41e0e9a6cf0f1bf00b0) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
 | 2026-10-29 | [`8930223`](https://github.com/smolquery/smolquery/commit/8930223fa562009fe73c41f658aad90da6e715ba) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
@@ -118,6 +119,55 @@ them for a local run. If ports 4000 or
 | 2026-10-18 | [`aa7cc68`](https://github.com/smolquery/smolquery/commit/aa7cc68c6dd3d2e3c98cb1f82561060a798f80df) | ok | 144.0 | 69443 | 36.3 | 43/43 | 38.41 | 35.99 | 692 |
 | 2026-10-18 | [`6e62333`](https://github.com/smolquery/smolquery/commit/6e62333b94d480df543d9b46214db410e435bdde) | ok | 143.5 | 69678 | 70.1 | 43/43 | 69.42 | 64.88 | 1254 |
 | 2026-10-18 | [`6f28309`](https://github.com/smolquery/smolquery/commit/6f283093968432cebd6308a7b17d1cd86d29a501) | ok | 128.4 | 77901 | 18.2 | 43/43 | 64.47 | 61.08 | 1169 |
-| 2026-10-17 | [`42b2f89`](https://github.com/smolquery/smolquery/commit/42b2f89c6b640ebccee0646ae2ad84acc29bdc43) | ok | 145.6 | 68701 | 24.4 | 43/43 | 39.19 | 36.55 | 706 |
+
+<details><summary>Per-query times, latest run</summary>
+
+| query | first ms | hot ms | previous hot ms | change |
+|---|---:|---:|---:|---:|
+| Q1 | 453 | 513 | 486 | +6% |
+| Q2 | 2161 | 1534 | 516 | +197% |
+| Q3 | 2221 | 2243 | 526 | +327% |
+| Q4 | 2222 | 2123 | 554 | +283% |
+| Q5 | 3194 | 3185 | 649 | +391% |
+| Q6 | 3447 | 3294 | 785 | +320% |
+| Q7 | 1901 | 2214 | 482 | +359% |
+| Q8 | 2202 | 1919 | 485 | +296% |
+| Q9 | 2868 | 2584 | 675 | +283% |
+| Q10 | 2674 | 2665 | 786 | +239% |
+| Q11 | 2277 | 2241 | 542 | +313% |
+| Q12 | 2351 | 2238 | 590 | +280% |
+| Q13 | 2746 | 2751 | 830 | +232% |
+| Q14 | 3188 | 2946 | 885 | +233% |
+| Q15 | 2779 | 2784 | 772 | +261% |
+| Q16 | 2318 | 2359 | 654 | +261% |
+| Q17 | 3194 | 2981 | 944 | +216% |
+| Q18 | 3112 | 3007 | 898 | +235% |
+| Q19 | 3732 | 3717 | 1246 | +198% |
+| Q20 | 1093 | 1053 | 1007 | +5% |
+| Q21 | 3143 | 3187 | 1471 | +117% |
+| Q22 | 3237 | 3230 | 1413 | +129% |
+| Q23 | 4416 | 4094 | 2420 | +69% |
+| Q24 | 3961 | 3886 | 4072 | -5% |
+| Q25 | 1331 | 1219 | 1231 | -1% |
+| Q26 | 1156 | 1211 | 1168 | +4% |
+| Q27 | 1179 | 1241 | 1276 | -3% |
+| Q28 | 3074 | 3064 | 1406 | +118% |
+| Q29 | 9715 | 9985 | 6982 | +43% |
+| Q30 | 2224 | 2240 | 582 | +285% |
+| Q31 | 2761 | 2699 | 907 | +198% |
+| Q32 | 2946 | 2956 | 1076 | +175% |
+| Q33 | 4880 | 4805 | 1438 | +234% |
+| Q34 | 4667 | 4436 | 1767 | +151% |
+| Q35 | 4603 | 4483 | 1826 | +146% |
+| Q36 | 2495 | 2501 | 625 | +300% |
+| Q37 | 1458 | 1337 | 1407 | -5% |
+| Q38 | 1246 | 1229 | 1229 | -0% |
+| Q39 | 1374 | 1349 | 1299 | +4% |
+| Q40 | 1862 | 1689 | 1701 | -1% |
+| Q41 | 1113 | 1117 | 1075 | +4% |
+| Q42 | 1012 | 1085 | 1129 | -4% |
+| Q43 | 1123 | 1039 | 1049 | -1% |
+
+</details>
 
 <!-- results:end -->
