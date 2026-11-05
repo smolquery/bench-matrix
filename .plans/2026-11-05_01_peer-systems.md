@@ -27,7 +27,7 @@ Each bench run also benches ClickHouse and VictoriaLogs on the same runner, with
 - [x] Compare the query answers between systems, and record the differences here.
 - [x] Update the README.
 - [x] Commit and push.
-- [ ] Confirm the first GitHub runner result. The workflow itself is not tested: there is no local run of `bench.yml`.
+- [x] Confirm the first GitHub runner result: run 42111347768 passed in 16 minutes.
 
 ## Findings
 
@@ -58,3 +58,15 @@ Other findings:
 - VictoriaLogs answers 200 and stores nothing when the content type is a form type. The harness sends `application/stream+json`, and the row count check catches a repeat.
 - Every smolquery query except Q1 takes at least 560 ms, against 1 to 202 ms for the fastest peer on each query. The cause is not known.
 - VS Code holds ports 4000, 8123 and 18123 on the local machine, and `curl` with no timeout hangs on them. `up.sh` now uses `--max-time`.
+
+## GitHub runner result
+
+Run 42111347768, 4 vCPU, 16 GB, smolquery `4a72dc3`. All steps passed in 16 minutes: smolquery 7.7, ClickHouse 2.5, VictoriaLogs 4.8.
+
+| system | load rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |
+|---|---:|---:|---:|---:|---:|---:|
+| smolquery | 73100 | 13.3 | 43/43 | 91.94 | 89.64 | 1772 |
+| ClickHouse | 102836 | 0.0 | 43/43 | 4.95 | 3.90 | 36 |
+| VictoriaLogs | 57672 | 0.0 | 43/43 | 34.99 | 33.64 | 187 |
+
+The same smolquery commit had a hot sum of 107.30 s on 2026-11-02, so runner noise between runs can reach about 16%.
