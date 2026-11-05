@@ -1,10 +1,11 @@
-// Command bench runs the bench-matrix benches against one smolquery node.
+// Command bench runs the bench-matrix benches against one system: a smolquery
+// node, a ClickHouse server or a VictoriaLogs server.
 //
-//	bench load     create the table, insert the suite's rows, wait for seal
+//	bench load     create the table, insert the suite's rows, wait for background work
 //	bench query    run the suite's queries and time each one
 //	bench publish  file one run under results/ and refresh the README
 //
-// Every subcommand takes -h for its flags. The API key comes from the
+// Every subcommand takes -h for its flags. The smolquery API key comes from the
 // SMOLQUERY_API_KEY environment variable.
 package main
 

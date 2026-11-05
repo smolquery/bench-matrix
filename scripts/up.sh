@@ -3,9 +3,43 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 : "${SMOLQUERY_IMAGE:?set SMOLQUERY_IMAGE to the image under test}"
+system=${1:-smolquery}
 
 docker compose down -v --remove-orphans >/dev/null 2>&1 || true
-docker compose pull --quiet
+
+wait_for() {
+  local url=$1
+  echo "waiting for $system"
+  for _ in $(seq 1 120); do
+    if curl -fs --max-time 5 "$url" >/dev/null; then
+      echo "$system healthy"
+      return 0
+    fi
+    sleep 1
+  done
+  echo "$system did not become healthy"
+  docker compose logs "$system" | tail -100
+  return 1
+}
+
+case "$system" in
+  clickhouse)
+    docker compose pull --quiet clickhouse
+    docker compose up -d clickhouse
+    wait_for "http://127.0.0.1:${CLICKHOUSE_PORT:-8123}/ping"
+    exit
+    ;;
+  victorialogs)
+    docker compose pull --quiet victorialogs
+    docker compose up -d victorialogs
+    wait_for "http://127.0.0.1:${VICTORIALOGS_PORT:-9428}/health"
+    exit
+    ;;
+  smolquery) ;;
+  *) echo "unknown system $system"; exit 2 ;;
+esac
+
+docker compose pull --quiet postgres rustfs smolquery
 docker compose up -d --wait postgres rustfs
 
 echo "waiting for rustfs"
@@ -24,15 +58,4 @@ case "$status" in
 esac
 
 docker compose up -d smolquery
-
-echo "waiting for smolquery"
-for _ in $(seq 1 120); do
-  if curl -fs http://127.0.0.1:${SMOLQUERY_PORT:-4000}/healthz >/dev/null; then
-    echo "smolquery healthy"
-    exit 0
-  fi
-  sleep 1
-done
-echo "smolquery did not become healthy"
-docker compose logs smolquery | tail -100
-exit 1
+wait_for "http://127.0.0.1:${SMOLQUERY_PORT:-4000}/healthz"

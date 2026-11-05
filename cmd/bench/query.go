@@ -51,14 +51,29 @@ type queryRun struct {
 
 func runQuery(args []string) {
 	fs := flag.NewFlagSet("query", flag.ExitOnError)
-	base := fs.String("api", "http://127.0.0.1:4000", "smolquery API base URL")
-	queries := fs.String("queries", "suites/clickbench/queries.sql", "one query per line, %{ref} for the table")
-	ref := fs.String("ref", "bench.hits", "dataset.table")
+	name := fs.String("system", "smolquery", "system under test: smolquery, clickhouse or victorialogs")
+	base := fs.String("api", "", "API base URL (default: the system's local port)")
+	queries := fs.String("queries", "", "one query per line, %{ref} for the table (default: the system's queries)")
+	ref := fs.String("ref", "", "table to query (default: the system's table)")
 	tries := fs.Int("tries", 3, "runs per query")
 	timeoutMs := fs.Int("timeout-ms", 300_000, "timeoutMs sent with every job")
-	options := fs.String("options", `{"fileCache":true}`, "extra JSON fields merged into every request body")
+	options := fs.String("options", "", "extra JSON fields merged into every smolquery request body")
 	out := fs.String("out", "out/query.json", "result JSON path")
 	fs.Parse(args)
+
+	defaults := defaultsFor(*name)
+	if *base == "" {
+		*base = defaults.api
+	}
+	if *queries == "" {
+		*queries = defaults.queries
+	}
+	if *ref == "" {
+		*ref = defaults.ref
+	}
+	if *options == "" {
+		*options = defaults.options
+	}
 
 	list, err := readQueries(*queries, *ref)
 	if err != nil {
@@ -70,7 +85,7 @@ func runQuery(args []string) {
 	}
 	extra["timeoutMs"] = *timeoutMs
 
-	client := newAPI(*base, time.Duration(*timeoutMs+60_000)*time.Millisecond)
+	sys := newSystem(*name, *base, *ref, time.Duration(*timeoutMs+60_000)*time.Millisecond)
 	run := queryRun{
 		StartedAt: time.Now().UTC().Format(time.RFC3339),
 		Ref:       *ref,
@@ -80,17 +95,9 @@ func runQuery(args []string) {
 	for n, sql := range list {
 		r := queryResult{N: n + 1, SQL: sql}
 		for range *tries {
-			started := time.Now()
-			resp, status, err := client.query(sql, extra)
-			t := try{WallMs: msSince(started), Status: status}
-			if err != nil {
-				t.Error = err.Error()
+			t := sys.runQuery(sql, extra, *timeoutMs)
+			if t.Error != "" {
 				r.Errors++
-			} else {
-				t.DurationMs = resp.Job.DurationMs
-				t.TotalRows = resp.TotalRows
-				t.FileCache = resp.Job.FileCache
-				t.Scatter = resp.Job.Scatter
 			}
 			r.Tries = append(r.Tries, t)
 		}

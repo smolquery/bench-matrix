@@ -19,7 +19,18 @@ const (
 	historyRows = 30
 )
 
+type peer struct {
+	id    string
+	label string
+}
+
+var peers = []peer{
+	{id: "clickhouse", label: "ClickHouse"},
+	{id: "victorialogs", label: "VictoriaLogs"},
+}
+
 type loadRun struct {
+	Version     string  `json:"version"`
 	Files       int     `json:"files"`
 	RowsCounted int64   `json:"rows_counted"`
 	HotLeft     int64   `json:"hot_files_left"`
@@ -32,11 +43,8 @@ type loadRun struct {
 	} `json:"ingest"`
 }
 
-type historyEntry struct {
-	ID             string  `json:"id"`
-	Date           string  `json:"date"`
-	SHA            string  `json:"sha"`
-	Subject        string  `json:"subject,omitempty"`
+type systemSummary struct {
+	Version        string  `json:"version,omitempty"`
 	Status         string  `json:"status"`
 	Rows           int64   `json:"rows"`
 	IngestS        float64 `json:"ingest_s"`
@@ -47,13 +55,22 @@ type historyEntry struct {
 	FirstSumS      float64 `json:"first_sum_s"`
 	HotSumS        float64 `json:"hot_sum_s"`
 	HotGeomeanMs   float64 `json:"hot_geomean_ms"`
-	Runner         string  `json:"runner"`
-	RunURL         string  `json:"run_url,omitempty"`
+}
+
+type historyEntry struct {
+	ID      string `json:"id"`
+	Date    string `json:"date"`
+	SHA     string `json:"sha"`
+	Subject string `json:"subject,omitempty"`
+	systemSummary
+	Peers  map[string]systemSummary `json:"peers,omitempty"`
+	Runner string                   `json:"runner"`
+	RunURL string                   `json:"run_url,omitempty"`
 }
 
 func runPublish(args []string) {
 	fs := flag.NewFlagSet("publish", flag.ExitOnError)
-	runDir := fs.String("run", "out", "directory holding load.json and query.json")
+	runDir := fs.String("run", "out", "directory holding <system>/load.json and <system>/query.json")
 	results := fs.String("results", "results", "results root")
 	readme := fs.String("readme", "README.md", "README whose results section is rewritten")
 	sha := fs.String("sha", "", "smolquery commit under test (required)")
@@ -70,19 +87,13 @@ func runPublish(args []string) {
 	id := now.Format("2006-01-02T150405Z") + "_" + (*sha)[:7]
 	dir := filepath.Join(*results, "runs", id)
 
-	var load *loadRun
-	var query *queryRun
-	if raw, err := os.ReadFile(filepath.Join(*runDir, "load.json")); err == nil {
-		load = &loadRun{}
-		must(json.Unmarshal(raw, load))
-		must(os.MkdirAll(dir, 0o755))
-		must(os.WriteFile(filepath.Join(dir, "load.json"), raw, 0o644))
-	}
-	if raw, err := os.ReadFile(filepath.Join(*runDir, "query.json")); err == nil {
-		query = &queryRun{}
-		must(json.Unmarshal(raw, query))
-		must(os.MkdirAll(dir, 0o755))
-		must(os.WriteFile(filepath.Join(dir, "query.json"), raw, 0o644))
+	load, query := fileRun(filepath.Join(*runDir, "smolquery"), dir)
+	peerQueries := map[string]*queryRun{}
+	peerSummaries := map[string]systemSummary{}
+	for _, p := range peers {
+		peerLoad, peerQuery := fileRun(filepath.Join(*runDir, p.id), filepath.Join(dir, p.id))
+		peerQueries[p.id] = peerQuery
+		peerSummaries[p.id] = summarizeSystem(peerLoad, peerQuery)
 	}
 
 	runURL := ""
@@ -104,32 +115,9 @@ func runPublish(args []string) {
 
 	entry := historyEntry{
 		ID: id, Date: now.Format(time.RFC3339), SHA: *sha, Subject: *subject,
-		Runner: runner, RunURL: runURL, Status: "ok",
-	}
-	switch {
-	case load == nil:
-		entry.Status = "load_failed"
-	case load.RowsCounted != int64(load.Files)*1_000_000:
-		entry.Status = "load_short"
-	case load.HotLeft != 0:
-		entry.Status = "seal_incomplete"
-	case query == nil:
-		entry.Status = "query_failed"
-	case query.Summary.Passed < query.Summary.Queries:
-		entry.Status = "query_errors"
-	}
-	if load != nil {
-		entry.Rows = load.RowsCounted
-		entry.IngestS = load.Ingest.DurationS
-		entry.IngestRowsPerS = load.Ingest.RowsPerS
-		entry.SealS = load.SealS
-	}
-	if query != nil {
-		entry.QueriesPassed = query.Summary.Passed
-		entry.QueriesTotal = query.Summary.Queries
-		entry.FirstSumS = query.Summary.FirstSumS
-		entry.HotSumS = query.Summary.HotSumS
-		entry.HotGeomeanMs = query.Summary.HotGeomeanMs
+		Runner: runner, RunURL: runURL,
+		systemSummary: summarizeSystem(load, query),
+		Peers:         peerSummaries,
 	}
 
 	historyPath := filepath.Join(*results, "history.jsonl")
@@ -150,9 +138,58 @@ func runPublish(args []string) {
 			previous = nil
 		}
 	}
-	section := renderResults(history, query, previous)
+	section := renderResults(history, query, previous, peerQueries)
 	must(rewriteSection(*readme, section))
 	log.Printf("publish: %s (%s) → %s", id, entry.Status, dir)
+}
+
+func fileRun(from, to string) (*loadRun, *queryRun) {
+	var load *loadRun
+	var query *queryRun
+	if raw, err := os.ReadFile(filepath.Join(from, "load.json")); err == nil {
+		load = &loadRun{}
+		must(json.Unmarshal(raw, load))
+		must(os.MkdirAll(to, 0o755))
+		must(os.WriteFile(filepath.Join(to, "load.json"), raw, 0o644))
+	}
+	if raw, err := os.ReadFile(filepath.Join(from, "query.json")); err == nil {
+		query = &queryRun{}
+		must(json.Unmarshal(raw, query))
+		must(os.MkdirAll(to, 0o755))
+		must(os.WriteFile(filepath.Join(to, "query.json"), raw, 0o644))
+	}
+	return load, query
+}
+
+func summarizeSystem(load *loadRun, query *queryRun) systemSummary {
+	s := systemSummary{Status: "ok"}
+	switch {
+	case load == nil:
+		s.Status = "load_failed"
+	case load.RowsCounted != int64(load.Files)*1_000_000:
+		s.Status = "load_short"
+	case load.HotLeft != 0:
+		s.Status = "seal_incomplete"
+	case query == nil:
+		s.Status = "query_failed"
+	case query.Summary.Passed < query.Summary.Queries:
+		s.Status = "query_errors"
+	}
+	if load != nil {
+		s.Version = load.Version
+		s.Rows = load.RowsCounted
+		s.IngestS = load.Ingest.DurationS
+		s.IngestRowsPerS = load.Ingest.RowsPerS
+		s.SealS = load.SealS
+	}
+	if query != nil {
+		s.QueriesPassed = query.Summary.Passed
+		s.QueriesTotal = query.Summary.Queries
+		s.FirstSumS = query.Summary.FirstSumS
+		s.HotSumS = query.Summary.HotSumS
+		s.HotGeomeanMs = query.Summary.HotGeomeanMs
+	}
+	return s
 }
 
 func readHistory(path string) []historyEntry {
@@ -181,7 +218,7 @@ func previousOK(history []historyEntry) *historyEntry {
 	return nil
 }
 
-func renderResults(history []historyEntry, latest, previous *queryRun) string {
+func renderResults(history []historyEntry, latest, previous *queryRun, peerQueries map[string]*queryRun) string {
 	var b strings.Builder
 	last := history[len(history)-1]
 	fmt.Fprintf(&b, "### Latest run\n\n")
@@ -191,43 +228,91 @@ func renderResults(history []historyEntry, latest, previous *queryRun) string {
 	}
 	fmt.Fprintf(&b, "\n\n")
 
-	fmt.Fprintf(&b, "### History\n\n")
-	fmt.Fprintf(&b, "| date | commit | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |\n")
+	fmt.Fprintf(&b, "| system | version | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |\n")
 	fmt.Fprintf(&b, "|---|---|---|---:|---:|---:|---:|---:|---:|---:|\n")
+	writeSystemRow(&b, "smolquery", commitLink(last.SHA), last.systemSummary)
+	for _, p := range peers {
+		if s, ok := last.Peers[p.id]; ok {
+			writeSystemRow(&b, p.label, s.Version, s)
+		}
+	}
+	fmt.Fprintf(&b, "\n")
+
+	fmt.Fprintf(&b, "### History\n\n")
+	fmt.Fprintf(&b, "| date | commit | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |")
+	for _, p := range peers {
+		fmt.Fprintf(&b, " %s hot sum s |", p.label)
+	}
+	fmt.Fprintf(&b, "\n|---|---|---|---:|---:|---:|---:|---:|---:|---:|%s\n", strings.Repeat("---:|", len(peers)))
 	start := max(0, len(history)-historyRows)
 	for i := len(history) - 1; i >= start; i-- {
 		e := history[i]
-		fmt.Fprintf(&b, "| %s | %s | %s | %.1f | %.0f | %.1f | %d/%d | %.2f | %.2f | %.0f |\n",
+		fmt.Fprintf(&b, "| %s | %s | %s | %.1f | %.0f | %.1f | %d/%d | %.2f | %.2f | %.0f |",
 			e.Date[:10], commitLink(e.SHA), e.Status, e.IngestS, e.IngestRowsPerS, e.SealS,
 			e.QueriesPassed, e.QueriesTotal, e.FirstSumS, e.HotSumS, e.HotGeomeanMs)
+		for _, p := range peers {
+			fmt.Fprintf(&b, " %s |", peerHotSum(e.Peers, p.id))
+		}
+		fmt.Fprintf(&b, "\n")
 	}
 
 	if latest != nil {
-		prevHot := map[int]float64{}
-		if previous != nil {
-			for _, q := range previous.Queries {
-				if q.Errors == 0 {
-					prevHot[q.N] = q.HotMs
-				}
-			}
+		peerHot := map[string]map[int]float64{}
+		for _, p := range peers {
+			peerHot[p.id] = hotByQuery(peerQueries[p.id])
 		}
+		prevHot := hotByQuery(previous)
 		fmt.Fprintf(&b, "\n<details><summary>Per-query times, latest run</summary>\n\n")
-		fmt.Fprintf(&b, "| query | first ms | hot ms | previous hot ms | change |\n")
-		fmt.Fprintf(&b, "|---|---:|---:|---:|---:|\n")
+		fmt.Fprintf(&b, "| query | first ms | hot ms | previous hot ms | change |")
+		for _, p := range peers {
+			fmt.Fprintf(&b, " %s hot ms |", p.label)
+		}
+		fmt.Fprintf(&b, "\n|---|---:|---:|---:|---:|%s\n", strings.Repeat("---:|", len(peers)))
 		for _, q := range latest.Queries {
 			if q.Errors > 0 {
-				fmt.Fprintf(&b, "| Q%d | error | error | %s | |\n", q.N, formatMs(prevHot[q.N]))
-				continue
+				fmt.Fprintf(&b, "| Q%d | error | error | %s | |", q.N, formatMs(prevHot[q.N]))
+			} else {
+				change := ""
+				if p := prevHot[q.N]; p > 0 {
+					change = fmt.Sprintf("%+.0f%%", (q.HotMs-p)/p*100)
+				}
+				fmt.Fprintf(&b, "| Q%d | %.0f | %.0f | %s | %s |", q.N, q.FirstMs, q.HotMs, formatMs(prevHot[q.N]), change)
 			}
-			change := ""
-			if p := prevHot[q.N]; p > 0 {
-				change = fmt.Sprintf("%+.0f%%", (q.HotMs-p)/p*100)
+			for _, p := range peers {
+				fmt.Fprintf(&b, " %s |", formatMs(peerHot[p.id][q.N]))
 			}
-			fmt.Fprintf(&b, "| Q%d | %.0f | %.0f | %s | %s |\n", q.N, q.FirstMs, q.HotMs, formatMs(prevHot[q.N]), change)
+			fmt.Fprintf(&b, "\n")
 		}
 		fmt.Fprintf(&b, "\n</details>\n")
 	}
 	return b.String()
+}
+
+func writeSystemRow(b *strings.Builder, label, version string, s systemSummary) {
+	fmt.Fprintf(b, "| %s | %s | %s | %.1f | %.0f | %.1f | %d/%d | %.2f | %.2f | %.0f |\n",
+		label, version, s.Status, s.IngestS, s.IngestRowsPerS, s.SealS,
+		s.QueriesPassed, s.QueriesTotal, s.FirstSumS, s.HotSumS, s.HotGeomeanMs)
+}
+
+func peerHotSum(summaries map[string]systemSummary, id string) string {
+	s, ok := summaries[id]
+	if !ok || s.QueriesTotal == 0 {
+		return ""
+	}
+	return fmt.Sprintf("%.2f", s.HotSumS)
+}
+
+func hotByQuery(run *queryRun) map[int]float64 {
+	hot := map[int]float64{}
+	if run == nil {
+		return hot
+	}
+	for _, q := range run.Queries {
+		if q.Errors == 0 {
+			hot[q.N] = q.HotMs
+		}
+	}
+	return hot
 }
 
 func formatMs(v float64) string {

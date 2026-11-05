@@ -23,8 +23,9 @@ import (
 const maxAttempts = 30
 
 type loadConfig struct {
+	system       string
 	api          string
-	dataset      string
+	ref          string
 	schema       string
 	parquetDir   string
 	files        int
@@ -41,7 +42,6 @@ type loadConfig struct {
 }
 
 type tableDef struct {
-	ID         string            `json:"id"`
 	Clustering []string          `json:"clustering"`
 	Schema     []json.RawMessage `json:"schema"`
 }
@@ -70,9 +70,10 @@ type loadStats struct {
 func runLoad(args []string) {
 	fs := flag.NewFlagSet("load", flag.ExitOnError)
 	cfg := loadConfig{}
-	fs.StringVar(&cfg.api, "api", "http://127.0.0.1:4000", "smolquery API base URL")
-	fs.StringVar(&cfg.dataset, "dataset", "bench", "dataset to create the table in")
-	fs.StringVar(&cfg.schema, "schema", "suites/clickbench/schema.json", "table definition: id, clustering, schema")
+	fs.StringVar(&cfg.system, "system", "smolquery", "system under test: smolquery, clickhouse or victorialogs")
+	fs.StringVar(&cfg.api, "api", "", "API base URL (default: the system's local port)")
+	fs.StringVar(&cfg.ref, "ref", "", "table to load (default: the system's table)")
+	fs.StringVar(&cfg.schema, "schema", "", "table definition (default: the system's definition in suites/clickbench)")
 	fs.StringVar(&cfg.parquetDir, "parquet", "data/hits", "directory holding hits_<n>.parquet")
 	fs.IntVar(&cfg.files, "files", 10, "parquet files to load, hits_0 up to hits_<files-1>")
 	fs.IntVar(&cfg.pipelines, "pipelines", 2, "parquet files converted at once")
@@ -87,40 +88,46 @@ func runLoad(args []string) {
 	fs.StringVar(&cfg.insertPrefix, "insert-prefix", fmt.Sprintf("bench-%d", time.Now().Unix()), "insertId prefix")
 	fs.Parse(args)
 
-	var def tableDef
-	if err := readJSON(cfg.schema, &def); err != nil {
-		log.Fatalf("read %s: %v", cfg.schema, err)
+	defaults := defaultsFor(cfg.system)
+	if cfg.api == "" {
+		cfg.api = defaults.api
 	}
-	client := newAPI(cfg.api, 2*time.Minute)
-	ref := cfg.dataset + "." + def.ID
-	createTable(client, cfg.dataset, def, cfg.partitions)
+	if cfg.ref == "" {
+		cfg.ref = defaults.ref
+	}
+	if cfg.schema == "" {
+		cfg.schema = defaults.schema
+	}
+	sys := newSystem(cfg.system, cfg.api, cfg.ref, 2*time.Minute)
+	sys.createTable(cfg.schema, cfg.partitions)
 
 	log.Printf("load: %d file(s) into %s, %d pipeline(s), %d worker(s), %d bytes per request",
-		cfg.files, ref, cfg.pipelines, cfg.workers, cfg.batchBytes)
-	ingest := ingestFiles(cfg, def.ID)
+		cfg.files, cfg.system, cfg.pipelines, cfg.workers, cfg.batchBytes)
+	ingest := ingestFiles(cfg, sys)
 	log.Printf("load: %d rows accepted in %.1fs (%.0f rows/s), %d rejected, %d failed",
 		ingest["rows_accepted"], ingest["duration_s"], ingest["rows_per_s"], ingest["rows_rejected"], ingest["rows_failed"])
 
-	sealStarted := time.Now()
-	hotLeft := waitForSeal(client, ref, cfg.sealWait)
-	sealS := time.Since(sealStarted).Seconds()
-	log.Printf("load: hot tier %d file(s) left after %.1fs", hotLeft, sealS)
+	left, settled := sys.settle(cfg.sealWait)
+	sealS := settled.Seconds()
+	log.Printf("load: %d unit(s) of background work left after %.1fs", left, sealS)
 
-	count, err := countRows(client, ref)
+	count, err := sys.countRows()
 	if err != nil {
-		log.Printf("load: count(*) failed: %v", err)
+		log.Printf("load: count failed: %v", err)
 	}
 	expected := int64(cfg.files) * 1_000_000
-	log.Printf("load: count(*) = %d, expected %d", count, expected)
+	log.Printf("load: counted %d rows, expected %d", count, expected)
 
 	result := map[string]any{
-		"table":          ref,
+		"system":         cfg.system,
+		"version":        sys.version(),
+		"table":          cfg.ref,
 		"files":          cfg.files,
 		"rows_expected":  expected,
 		"rows_counted":   count,
 		"ingest":         ingest,
 		"seal_s":         sealS,
-		"hot_files_left": hotLeft,
+		"hot_files_left": left,
 		"total_s":        ingest["duration_s"].(float64) + sealS,
 		"config": map[string]any{
 			"pipelines":      cfg.pipelines,
@@ -135,25 +142,12 @@ func runLoad(args []string) {
 	if count != expected {
 		fatalf("load: counted %d rows, expected %d", count, expected)
 	}
-	if hotLeft != 0 {
-		fatalf("load: the hot tier did not seal within %s (%d file(s) left)", cfg.sealWait, hotLeft)
+	if left != 0 {
+		fatalf("load: background work did not finish within %s (%d unit(s) left)", cfg.sealWait, left)
 	}
 }
 
-func createTable(client *api, dataset string, def tableDef, partitions int) {
-	client.must(http.MethodPost, "/v1/datasets", map[string]any{"id": dataset})
-	client.must(http.MethodPost, "/v1/datasets/"+dataset+"/tables", map[string]any{"id": def.ID, "schema": def.Schema})
-	if len(def.Clustering) > 0 {
-		client.must(http.MethodPatch, "/v1/datasets/"+dataset+"/tables/"+def.ID, map[string]any{"clustering": def.Clustering})
-	}
-	if partitions > 0 {
-		client.must(http.MethodPatch, "/v1/datasets/"+dataset+"/tables/"+def.ID, map[string]any{"partitions": partitions})
-	}
-	log.Printf("load: table %s.%s ready, clustering %v, partitions %d", dataset, def.ID, def.Clustering, partitions)
-}
-
-func ingestFiles(cfg loadConfig, table string) map[string]any {
-	url := fmt.Sprintf("%s/v1/datasets/%s/tables/%s/insert", cfg.api, cfg.dataset, table)
+func ingestFiles(cfg loadConfig, sys system) map[string]any {
 	st := &loadStats{statuses: map[int]int64{}}
 	jobs := make(chan batch, cfg.workers*2)
 	httpClient := &http.Client{
@@ -164,14 +158,13 @@ func ingestFiles(cfg loadConfig, table string) map[string]any {
 			DisableCompression:  true,
 		},
 	}
-	auth := "Bearer " + os.Getenv("SMOLQUERY_API_KEY")
 
 	started := time.Now()
 	var workers sync.WaitGroup
 	for range cfg.workers {
 		workers.Go(func() {
 			for b := range jobs {
-				post(httpClient, url, auth, cfg.insertPrefix, b, st)
+				post(httpClient, sys, cfg.insertPrefix, b, st)
 			}
 		})
 	}
@@ -276,16 +269,14 @@ TO '/dev/stdout' (FORMAT json)`, cfg.duckThreads, cfg.duckMemory, path)
 	return cmd.Wait()
 }
 
-func post(client *http.Client, url, auth, prefix string, b batch, st *loadStats) {
-	target := fmt.Sprintf("%s?insertId=%s-f%d-b%d", url, prefix, b.file, b.index)
+func post(client *http.Client, sys system, prefix string, b batch, st *loadStats) {
+	insertID := fmt.Sprintf("%s-f%d-b%d", prefix, b.file, b.index)
 	backoff := time.Second
 	for attempt := 1; attempt <= maxAttempts; attempt++ {
-		req, err := http.NewRequest(http.MethodPost, target, bytes.NewReader(b.raw))
+		req, err := sys.insertRequest(b.raw, insertID)
 		if err != nil {
 			log.Fatal(err)
 		}
-		req.Header.Set("Content-Type", "application/x-ndjson")
-		req.Header.Set("Authorization", auth)
 		started := time.Now()
 		resp, err := client.Do(req)
 		st.requests.Add(1)
@@ -300,22 +291,20 @@ func post(client *http.Client, url, auth, prefix string, b batch, st *loadStats)
 		}
 		raw, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<20))
 		resp.Body.Close()
-		switch resp.StatusCode {
-		case http.StatusOK:
-			var parsed struct {
-				InsertedRows int64 `json:"insertedRows"`
-			}
-			if err := json.Unmarshal(raw, &parsed); err != nil {
+		switch {
+		case resp.StatusCode/100 == 2:
+			inserted, err := sys.acceptedRows(raw, b.rows)
+			if err != nil {
 				log.Printf("load: f%d b%d: decode: %v", b.file, b.index, err)
 			}
 			st.record(resp.StatusCode, msSince(started))
-			st.rowsAccepted.Add(parsed.InsertedRows)
-			st.rowsRejected.Add(b.rows - parsed.InsertedRows)
-			if parsed.InsertedRows != b.rows {
-				log.Printf("load: f%d b%d: %d of %d rows accepted: %s", b.file, b.index, parsed.InsertedRows, b.rows, truncate(string(raw), 300))
+			st.rowsAccepted.Add(inserted)
+			st.rowsRejected.Add(b.rows - inserted)
+			if inserted != b.rows {
+				log.Printf("load: f%d b%d: %d of %d rows accepted: %s", b.file, b.index, inserted, b.rows, truncate(string(raw), 300))
 			}
 			return
-		case http.StatusTooManyRequests:
+		case resp.StatusCode == http.StatusTooManyRequests:
 			st.record(resp.StatusCode, 0)
 			st.retries429.Add(1)
 			wait := 1.0
@@ -375,44 +364,6 @@ func (s *loadStats) summary(elapsed float64) map[string]any {
 			"max": percentile(latencies, 100),
 		},
 	}
-}
-
-func waitForSeal(client *api, ref string, limit time.Duration) int64 {
-	deadline := time.Now().Add(limit)
-	sql := fmt.Sprintf("SELECT count(*) AS n FROM %s WHERE CounterID = -1", ref)
-	hot := int64(-1)
-	for {
-		resp, _, err := client.query(sql, map[string]any{"timeoutMs": 60_000})
-		if err == nil && resp.Job.Statistics != nil {
-			hot = resp.Job.Statistics.Hot.FilesTotal
-			if hot == 0 {
-				return 0
-			}
-		}
-		if time.Now().After(deadline) {
-			return hot
-		}
-		time.Sleep(5 * time.Second)
-	}
-}
-
-func countRows(client *api, ref string) (int64, error) {
-	resp, _, err := client.query("SELECT count(*) AS n FROM "+ref, nil)
-	if err != nil {
-		return 0, err
-	}
-	if len(resp.Rows) == 0 {
-		return 0, errors.New("no rows")
-	}
-	var asObject map[string]json.Number
-	if err := json.Unmarshal(resp.Rows[0], &asObject); err == nil {
-		return asObject["n"].Int64()
-	}
-	var asArray []json.Number
-	if err := json.Unmarshal(resp.Rows[0], &asArray); err == nil && len(asArray) > 0 {
-		return asArray[0].Int64()
-	}
-	return 0, fmt.Errorf("unexpected row %s", resp.Rows[0])
 }
 
 func percentile(sorted []float64, p float64) float64 {

@@ -57,8 +57,36 @@ services:
       - smolquery-data:/data
       - smolquery-cache:/cache
 
+  clickhouse:
+    image: clickhouse/clickhouse-server:26.10.2.103
+    mem_limit: ${SMOLQUERY_MEM_LIMIT:-12g}
+    environment:
+      CLICKHOUSE_SKIP_USER_SETUP: "1"
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    ports:
+      - "127.0.0.1:${CLICKHOUSE_PORT:-8123}:8123"
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+
+  victorialogs:
+    image: victoriametrics/victoria-logs:v1.53.0
+    mem_limit: ${SMOLQUERY_MEM_LIMIT:-12g}
+    command:
+      - -storageDataPath=/victoria-logs-data
+      - -retentionPeriod=20y
+      - -search.maxQueryDuration=5m
+    ports:
+      - "127.0.0.1:${VICTORIALOGS_PORT:-9428}:9428"
+    volumes:
+      - victorialogs-data:/victoria-logs-data
+
 volumes:
   postgres-data:
   rustfs-data:
   smolquery-data:
   smolquery-cache:
+  clickhouse-data:
+  victorialogs-data:

@@ -1,18 +1,25 @@
 # bench-matrix
 
 bench-matrix benchmarks every commit that lands on the `main` branch of
-[smolquery/smolquery](https://github.com/smolquery/smolquery). Each run
-commits its results to this repository, so the history stays in git.
+[smolquery/smolquery](https://github.com/smolquery/smolquery). Each run also
+benches [ClickHouse](https://github.com/ClickHouse/ClickHouse) and
+[VictoriaLogs](https://github.com/VictoriaMetrics/VictoriaLogs) on the same
+machine. Each run commits its results to this repository, so the history stays
+in git.
 
 ## What runs
 
-A run starts the smolquery image for one commit and runs two benches on the
-[ClickBench](https://github.com/ClickHouse/ClickBench) `hits` dataset.
+A run benches three systems, one at a time, in this order: smolquery,
+ClickHouse, VictoriaLogs. Each system runs two benches on the
+[ClickBench](https://github.com/ClickHouse/ClickBench) `hits` dataset. The
+harness removes each stack and its volumes before the next system starts.
 
 | bench | what it does | what it measures |
 |---|---|---|
-| **load** | Creates `bench.hits` (105 columns), inserts 10M rows through the NDJSON insert route, then waits until the hot tier seals to object storage. | Ingest time and rows/s until the last insert is acknowledged. Seal time until the hot tier is empty. An exact `count(*)` check. The bench fails if the count is wrong or the seal does not finish in 20 minutes. |
-| **query** | Runs the 43 ClickBench queries, 3 tries each, through `POST /v1/queries`. | The first try and the best of the other two tries ("hot"), per query. The sums and the geometric mean of the hot times. |
+| **load** | Creates the table (105 columns), inserts 10M rows through the NDJSON insert route of the system, then waits for background work to stop. | Ingest time and rows/s until the last insert is acknowledged. Seal time until background work stops. An exact row count check. The bench fails if the count is wrong or the background work does not stop in 20 minutes. |
+| **query** | Runs the 43 ClickBench queries, 3 tries each, over HTTP. | The first try and the best of the other two tries ("hot"), per query. The sums and the geometric mean of the hot times. |
+
+### smolquery
 
 The stack is one smolquery node, configured like a production node:
 
@@ -31,7 +38,53 @@ The stack is one smolquery node, configured like a production node:
 `compose.yaml` holds the full configuration.
 
 The load bench converts Parquet to NDJSON with the DuckDB CLI on the same
-machine. That conversion shares the CPU with smolquery during the load.
+machine. That conversion shares the CPU with the system under test during the
+load.
+
+The seal time for smolquery ends when the hot tier is empty.
+
+### ClickHouse and VictoriaLogs
+
+Each peer is one container on a local Docker volume, with the same 12 GB limit
+as smolquery. The peers use default settings, plus the settings in this table.
+`compose.yaml` pins each version, so a peer number changes only with the runner
+or a deliberate version change. Thus the peers also show the runner noise.
+
+| system | image | insert route | seal time ends when | settings |
+|---|---|---|---|---|
+| ClickHouse | `clickhouse/clickhouse-server:26.10.2.103` | `FORMAT JSONEachRow` over HTTP | `system.merges` is empty | The ClickBench table: `MergeTree`, `fsync_after_insert = 1`. |
+| VictoriaLogs | `victoriametrics/victoria-logs:v1.53.0` | `/insert/jsonline` | `vl_active_merges` is 0 after a flush | `-retentionPeriod=20y`, `-search.maxQueryDuration=5m`. |
+
+All systems get the same NDJSON: 24 MB bodies over 8 concurrent requests. The
+peer table and queries come from ClickBench commit
+[`ff15af5`](https://github.com/ClickHouse/ClickBench/tree/ff15af5d8aae5ce5ce79b8e479379582f9050fdc).
+
+To change a peer version, change its image in `compose.yaml`. The results show
+the version of each peer.
+
+### Limits of the comparison
+
+- **Storage:** smolquery reads from object storage through a file cache. The
+  peers read from a local volume.
+- **Memory:** the 12 GB limit does not include the Postgres and RustFS
+  containers that smolquery needs.
+- **Answers:** the harness does not compare answers in a run. A manual check at
+  10M rows found the differences in the next list.
+- **Ingest:** NDJSON is the common route, not the fastest route. ClickBench
+  loads ClickHouse from Parquet directly.
+
+The VictoriaLogs queries are LogsQL translations, not the same SQL. The manual
+check found these real differences in the answers:
+
+| query | system | difference |
+|---|---|---|
+| Q4 | ClickHouse | `AVG(UserID)` returns about -6.5e11, not 2.5e18. The `Int64` sum overflows. DuckDB on the source Parquet gives 2.5e18. |
+| Q6 | VictoriaLogs | `count_uniq` does not count the empty string, so the result is 1 lower. |
+| Q23, Q26 | VictoriaLogs | `min` and sort use a different string order, so some strings differ. |
+| Q29 | smolquery | `.` does not match a newline in the regular expression, so some counts are lower. 266 `Referer` values hold a newline. |
+
+Other queries can return different rows when rows tie under `LIMIT`, or when a
+query has no `ORDER BY` (Q18). The time formats also differ.
 
 ## When it runs
 
@@ -50,32 +103,39 @@ Runs queue one at a time. The runner is a GitHub-hosted `ubuntu-latest` machine
 
 - `results/history.jsonl`: one summary line per run, append-only.
 - `results/runs/<timestamp>_<sha>/`: `meta.json`, `load.json` and
-  `query.json` for one run.
-- The section below: the latest run, the last 30 runs, and per-query times
-  against the previous run. `bench publish` rewrites it after each run.
-- Each workflow run also uploads `out/` with the container logs as an artifact.
+  `query.json` for one run. The `clickhouse/` and `victorialogs/` directories
+  hold `load.json` and `query.json` for each peer.
+- The section below: the latest run for each system, the last 30 runs, and
+  per-query times against the previous run and the peers. `bench publish`
+  rewrites it after each run.
+- Each workflow run also uploads `out/` with the container logs of each system
+  as an artifact.
+
+A peer failure does not stop the publish. The workflow publishes all results,
+then fails. The status column of the latest run shows which system failed.
 
 ## Run it locally
 
 You need Docker, Go 1.26, `curl` and `unzip`.
 
 1. Pick an image: `export SMOLQUERY_IMAGE=ghcr.io/smolquery/smolquery:sha-<full sha>`.
-2. Run the benches: `FILES=10 scripts/run.sh`. The results go to `out/`.
-3. Stop the stack: `scripts/down.sh`.
+2. Run the benches: `FILES=10 scripts/run.sh`. The results go to
+   `out/<system>/`. The harness stops each stack when its benches finish.
 
-`FILES` sets the number of 1M-row parquet files (default 10). The ingest
+`FILES` sets the number of 1M-row parquet files (default 10). `SYSTEMS` sets the
+systems to bench, for example `SYSTEMS=clickhouse scripts/run.sh`. The ingest
 variables in `compose.yaml` read from the environment, so you can override
-them for a local run. If ports 4000 or
-9000 are in use, set `SMOLQUERY_PORT` and `RUSTFS_PORT`.
+them for a local run. If a port is in use, set `SMOLQUERY_PORT` (4000),
+`RUSTFS_PORT` (9000), `CLICKHOUSE_PORT` (8123) or `VICTORIALOGS_PORT` (9428).
 
 ## Layout
 
 | path | contents |
 |---|---|
-| `cmd/bench` | The Go harness: `bench load`, `bench query`, `bench publish`. |
-| `suites/clickbench` | The table definition with its clustering key, and the 43 queries. |
-| `scripts` | `fetch.sh` (data and DuckDB CLI), `up.sh`, `down.sh`, `run.sh`. |
-| `compose.yaml` | Postgres, RustFS and smolquery. |
+| `cmd/bench` | The Go harness: `bench load`, `bench query`, `bench publish`. `system.go` holds the adapter for each system. |
+| `suites/clickbench` | The smolquery table definition and queries. `clickhouse/` and `victorialogs/` hold the peer versions. |
+| `scripts` | `fetch.sh` (data and DuckDB CLI), `up.sh`, `down.sh`, `bench.sh` (one system), `run.sh` (all systems). |
+| `compose.yaml` | Postgres, RustFS, smolquery, ClickHouse and VictoriaLogs. |
 | `.github/workflows/bench.yml` | The CI workflow. |
 
 ## Results
