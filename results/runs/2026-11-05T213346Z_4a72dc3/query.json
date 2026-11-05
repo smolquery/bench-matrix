@@ -1,0 +1,2338 @@
+{
+  "started_at": "2026-11-05T21:21:46Z",
+  "finished_at": "2026-11-05T21:26:21Z",
+  "ref": "bench.hits",
+  "tries": 3,
+  "options": {
+    "fileCache": true,
+    "timeoutMs": 300000
+  },
+  "summary": {
+    "queries": 43,
+    "passed": 43,
+    "first_sum_s": 91.944444,
+    "hot_sum_s": 89.635791,
+    "hot_geomean_ms": 1771.847443270202
+  },
+  "queries": [
+    {
+      "n": 1,
+      "sql": "SELECT COUNT(*) FROM bench.hits;",
+      "tries": [
+        {
+          "wall_ms": 384.343,
+          "duration_ms": 378,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 342.401,
+          "duration_ms": 334,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 414.074,
+          "duration_ms": 409,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 384.343,
+      "hot_ms": 342.401,
+      "errors": 0
+    },
+    {
+      "n": 2,
+      "sql": "SELECT COUNT(*) FROM bench.hits WHERE AdvEngineID \u003c\u003e 0;",
+      "tries": [
+        {
+          "wall_ms": 1656.052,
+          "duration_ms": 1654,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 932,
+            "peers": 4,
+            "readBytes": 11704960,
+            "scanBytes": 174301,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1729.699,
+          "duration_ms": 1728,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 932,
+            "peers": 4,
+            "readBytes": 11704960,
+            "scanBytes": 174301,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1661.809,
+          "duration_ms": 1659,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 932,
+            "peers": 4,
+            "readBytes": 11704960,
+            "scanBytes": 174301,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1656.052,
+      "hot_ms": 1661.809,
+      "errors": 0
+    },
+    {
+      "n": 3,
+      "sql": "SELECT SUM(AdvEngineID), COUNT(*), AVG(ResolutionWidth) FROM bench.hits;",
+      "tries": [
+        {
+          "wall_ms": 1751.461,
+          "duration_ms": 1749,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 3056,
+            "peers": 4,
+            "readBytes": 21666432,
+            "scanBytes": 2406712,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1627.379,
+          "duration_ms": 1622,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 3056,
+            "peers": 4,
+            "readBytes": 21666432,
+            "scanBytes": 2406712,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1738.931,
+          "duration_ms": 1737,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 3056,
+            "peers": 4,
+            "readBytes": 21666432,
+            "scanBytes": 2406712,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1751.461,
+      "hot_ms": 1627.379,
+      "errors": 0
+    },
+    {
+      "n": 4,
+      "sql": "SELECT AVG(UserID) FROM bench.hits;",
+      "tries": [
+        {
+          "wall_ms": 1760.355,
+          "duration_ms": 1753,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1736,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1724.304,
+          "duration_ms": 1721,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1736,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1765.036,
+          "duration_ms": 1762,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1736,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1760.355,
+      "hot_ms": 1724.304,
+      "errors": 0
+    },
+    {
+      "n": 5,
+      "sql": "SELECT COUNT(DISTINCT UserID) FROM bench.hits;",
+      "tries": [
+        {
+          "wall_ms": 2797.48,
+          "duration_ms": 2795,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12675965,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2878.35,
+          "duration_ms": 2873,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12675965,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2775.699,
+          "duration_ms": 2773,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12675965,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2797.48,
+      "hot_ms": 2775.699,
+      "errors": 0
+    },
+    {
+      "n": 6,
+      "sql": "SELECT COUNT(DISTINCT SearchPhrase) FROM bench.hits;",
+      "tries": [
+        {
+          "wall_ms": 2965.763,
+          "duration_ms": 2963,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32565764,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 22563513,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2932.153,
+          "duration_ms": 2930,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32565281,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 22563513,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2897.834,
+          "duration_ms": 2891,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32559136,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 22563513,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2965.763,
+      "hot_ms": 2897.834,
+      "errors": 0
+    },
+    {
+      "n": 7,
+      "sql": "SELECT MIN(EventDate), MAX(EventDate) FROM bench.hits;",
+      "tries": [
+        {
+          "wall_ms": 1555.294,
+          "duration_ms": 1546,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1320,
+            "peers": 4,
+            "readBytes": 10656384,
+            "scanBytes": 1739,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1669.032,
+          "duration_ms": 1667,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1320,
+            "peers": 4,
+            "readBytes": 10656384,
+            "scanBytes": 1739,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1614.57,
+          "duration_ms": 1613,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1320,
+            "peers": 4,
+            "readBytes": 10656384,
+            "scanBytes": 1739,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1555.294,
+      "hot_ms": 1614.57,
+      "errors": 0
+    },
+    {
+      "n": 8,
+      "sql": "SELECT AdvEngineID, COUNT(*) FROM bench.hits WHERE AdvEngineID \u003c\u003e 0 GROUP BY AdvEngineID ORDER BY COUNT(*) DESC;",
+      "tries": [
+        {
+          "wall_ms": 1750.228,
+          "duration_ms": 1749,
+          "total_rows": 8,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1738,
+            "peers": 4,
+            "readBytes": 11704960,
+            "scanBytes": 174301,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1712.28,
+          "duration_ms": 1708,
+          "total_rows": 8,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1748,
+            "peers": 4,
+            "readBytes": 11704960,
+            "scanBytes": 174301,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1729.729,
+          "duration_ms": 1725,
+          "total_rows": 8,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 1738,
+            "peers": 4,
+            "readBytes": 11704960,
+            "scanBytes": 174301,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1750.228,
+      "hot_ms": 1712.28,
+      "errors": 0
+    },
+    {
+      "n": 9,
+      "sql": "SELECT RegionID, COUNT(DISTINCT UserID) AS u FROM bench.hits GROUP BY RegionID ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 1968.604,
+          "duration_ms": 1967,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12782159,
+            "peers": 4,
+            "readBytes": 31627904,
+            "scanBytes": 19253440,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2010.284,
+          "duration_ms": 2009,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12782197,
+            "peers": 4,
+            "readBytes": 31627904,
+            "scanBytes": 19253440,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2076.429,
+          "duration_ms": 2072,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12782147,
+            "peers": 4,
+            "readBytes": 31627904,
+            "scanBytes": 19253440,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1968.604,
+      "hot_ms": 2010.284,
+      "errors": 0
+    },
+    {
+      "n": 10,
+      "sql": "SELECT RegionID, SUM(AdvEngineID), COUNT(*) AS c, AVG(ResolutionWidth), COUNT(DISTINCT UserID) FROM bench.hits GROUP BY RegionID ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2027.491,
+          "duration_ms": 2026,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12885954,
+            "peers": 4,
+            "readBytes": 49977984,
+            "scanBytes": 21660152,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2093.94,
+          "duration_ms": 2092,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12886474,
+            "peers": 4,
+            "readBytes": 49977984,
+            "scanBytes": 21660152,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2141.031,
+          "duration_ms": 2137,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 12886756,
+            "peers": 4,
+            "readBytes": 49977984,
+            "scanBytes": 21660152,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2027.491,
+      "hot_ms": 2093.94,
+      "errors": 0
+    },
+    {
+      "n": 11,
+      "sql": "SELECT MobilePhoneModel, COUNT(DISTINCT UserID) AS u FROM bench.hits WHERE MobilePhoneModel \u003c\u003e '' GROUP BY MobilePhoneModel ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 1751.743,
+          "duration_ms": 1745,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 672290,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 16032895,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1761.938,
+          "duration_ms": 1760,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 672307,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 16032895,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1757.742,
+          "duration_ms": 1756,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 672322,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 16032895,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1751.743,
+      "hot_ms": 1757.742,
+      "errors": 0
+    },
+    {
+      "n": 12,
+      "sql": "SELECT MobilePhone, MobilePhoneModel, COUNT(DISTINCT UserID) AS u FROM bench.hits WHERE MobilePhoneModel \u003c\u003e '' GROUP BY MobilePhone, MobilePhoneModel ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 1778.438,
+          "duration_ms": 1776,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 674658,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 16358498,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1848.695,
+          "duration_ms": 1846,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 674735,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 16358498,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1764.936,
+          "duration_ms": 1762,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 674722,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 16358498,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1778.438,
+      "hot_ms": 1764.936,
+      "errors": 0
+    },
+    {
+      "n": 13,
+      "sql": "SELECT SearchPhrase, COUNT(*) AS c FROM bench.hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2172.306,
+          "duration_ms": 2168,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32920594,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 22563513,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2283.508,
+          "duration_ms": 2281,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32907569,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 22563513,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2204.755,
+          "duration_ms": 2202,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32957253,
+            "peers": 4,
+            "readBytes": 34773632,
+            "scanBytes": 22563513,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2172.306,
+      "hot_ms": 2204.755,
+      "errors": 0
+    },
+    {
+      "n": 14,
+      "sql": "SELECT SearchPhrase, COUNT(DISTINCT UserID) AS u FROM bench.hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2413.923,
+          "duration_ms": 2412,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 41713627,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2413.221,
+          "duration_ms": 2412,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 41697067,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2469.746,
+          "duration_ms": 2468,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 41696451,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2413.923,
+      "hot_ms": 2413.221,
+      "errors": 0
+    },
+    {
+      "n": 15,
+      "sql": "SELECT SearchEngineID, SearchPhrase, COUNT(*) AS c FROM bench.hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchEngineID, SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2228.408,
+          "duration_ms": 2226,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 34352035,
+            "peers": 4,
+            "readBytes": 36870784,
+            "scanBytes": 24077754,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2215.671,
+          "duration_ms": 2213,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 34354404,
+            "peers": 4,
+            "readBytes": 36870784,
+            "scanBytes": 24077754,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2226.859,
+          "duration_ms": 2224,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 34355512,
+            "peers": 4,
+            "readBytes": 36870784,
+            "scanBytes": 24077754,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2228.408,
+      "hot_ms": 2215.671,
+      "errors": 0
+    },
+    {
+      "n": 16,
+      "sql": "SELECT UserID, COUNT(*) FROM bench.hits GROUP BY UserID ORDER BY COUNT(*) DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 1866.836,
+          "duration_ms": 1862,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 13930564,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1831.798,
+          "duration_ms": 1830,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 13966317,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1877.904,
+          "duration_ms": 1876,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 13979325,
+            "peers": 4,
+            "readBytes": 27433600,
+            "scanBytes": 15780702,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1866.836,
+      "hot_ms": 1831.798,
+      "errors": 0
+    },
+    {
+      "n": 17,
+      "sql": "SELECT UserID, SearchPhrase, COUNT(*) FROM bench.hits GROUP BY UserID, SearchPhrase ORDER BY COUNT(*) DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2491.443,
+          "duration_ms": 2488,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 57519647,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2423.602,
+          "duration_ms": 2419,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 57529912,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2495.122,
+          "duration_ms": 2491,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 57522332,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2491.443,
+      "hot_ms": 2423.602,
+      "errors": 0
+    },
+    {
+      "n": 18,
+      "sql": "SELECT UserID, SearchPhrase, COUNT(*) FROM bench.hits GROUP BY UserID, SearchPhrase LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2452.394,
+          "duration_ms": 2446,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 57507393,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2514.063,
+          "duration_ms": 2512,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 57529147,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2283.194,
+          "duration_ms": 2281,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 57519114,
+            "peers": 4,
+            "readBytes": 58890880,
+            "scanBytes": 38344215,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2452.394,
+      "hot_ms": 2283.194,
+      "errors": 0
+    },
+    {
+      "n": 19,
+      "sql": "SELECT UserID, extract(minute FROM EventTime) AS m, SearchPhrase, COUNT(*) FROM bench.hits GROUP BY UserID, m, SearchPhrase ORDER BY COUNT(*) DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 3036.823,
+          "duration_ms": 3035,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 92699934,
+            "peers": 4,
+            "readBytes": 100833920,
+            "scanBytes": 68839322,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 3182.201,
+          "duration_ms": 3180,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 92715281,
+            "peers": 4,
+            "readBytes": 100833920,
+            "scanBytes": 68839322,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2970.593,
+          "duration_ms": 2969,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 92711468,
+            "peers": 4,
+            "readBytes": 100833920,
+            "scanBytes": 68839322,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 3036.823,
+      "hot_ms": 2970.593,
+      "errors": 0
+    },
+    {
+      "n": 20,
+      "sql": "SELECT UserID FROM bench.hits WHERE UserID = 435090932899640449;",
+      "tries": [
+        {
+          "wall_ms": 851.172,
+          "duration_ms": 843,
+          "total_rows": 0,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 860.392,
+          "duration_ms": 853,
+          "total_rows": 0,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 770.457,
+          "duration_ms": 764,
+          "total_rows": 0,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 851.172,
+      "hot_ms": 770.457,
+      "errors": 0
+    },
+    {
+      "n": 21,
+      "sql": "SELECT COUNT(*) FROM bench.hits WHERE URL LIKE '%google%';",
+      "tries": [
+        {
+          "wall_ms": 2560.062,
+          "duration_ms": 2557,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 932,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2475.06,
+          "duration_ms": 2466,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 932,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2458.524,
+          "duration_ms": 2457,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 932,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2560.062,
+      "hot_ms": 2458.524,
+      "errors": 0
+    },
+    {
+      "n": 22,
+      "sql": "SELECT SearchPhrase, MIN(URL), COUNT(*) AS c FROM bench.hits WHERE URL LIKE '%google%' AND SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2580.993,
+          "duration_ms": 2576,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 8791,
+            "peers": 4,
+            "readBytes": 198351488,
+            "scanBytes": 150505577,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2529.483,
+          "duration_ms": 2527,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 8796,
+            "peers": 4,
+            "readBytes": 198351488,
+            "scanBytes": 150505577,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2656.678,
+          "duration_ms": 2655,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 8805,
+            "peers": 4,
+            "readBytes": 198351488,
+            "scanBytes": 150505577,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2580.993,
+      "hot_ms": 2529.483,
+      "errors": 0
+    },
+    {
+      "n": 23,
+      "sql": "SELECT SearchPhrase, MIN(URL), MIN(Title), COUNT(*) AS c, COUNT(DISTINCT UserID) FROM bench.hits WHERE Title LIKE '%Google%' AND URL NOT LIKE '%.google.%' AND SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 3448.584,
+          "duration_ms": 3445,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 99091,
+            "peers": 4,
+            "readBytes": 397056640,
+            "scanBytes": 303318851,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 3469.725,
+          "duration_ms": 3467,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 99072,
+            "peers": 4,
+            "readBytes": 397056640,
+            "scanBytes": 303318851,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 3527.783,
+          "duration_ms": 3525,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 99022,
+            "peers": 4,
+            "readBytes": 397056640,
+            "scanBytes": 303318851,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 3448.584,
+      "hot_ms": 3469.725,
+      "errors": 0
+    },
+    {
+      "n": 24,
+      "sql": "SELECT * FROM bench.hits WHERE URL LIKE '%google%' ORDER BY EventTime LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 3284.978,
+          "duration_ms": 3275,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 3112.889,
+          "duration_ms": 3103,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 3172.471,
+          "duration_ms": 3164,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 3284.978,
+      "hot_ms": 3112.889,
+      "errors": 0
+    },
+    {
+      "n": 25,
+      "sql": "SELECT SearchPhrase FROM bench.hits WHERE SearchPhrase \u003c\u003e '' ORDER BY EventTime LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 978.941,
+          "duration_ms": 967,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 969.703,
+          "duration_ms": 963,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 895.3,
+          "duration_ms": 889,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 978.941,
+      "hot_ms": 895.3,
+      "errors": 0
+    },
+    {
+      "n": 26,
+      "sql": "SELECT SearchPhrase FROM bench.hits WHERE SearchPhrase \u003c\u003e '' ORDER BY SearchPhrase LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 874.926,
+          "duration_ms": 869,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 858.971,
+          "duration_ms": 854,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 937.536,
+          "duration_ms": 925,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 874.926,
+      "hot_ms": 858.971,
+      "errors": 0
+    },
+    {
+      "n": 27,
+      "sql": "SELECT SearchPhrase FROM bench.hits WHERE SearchPhrase \u003c\u003e '' ORDER BY EventTime, SearchPhrase LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 976.02,
+          "duration_ms": 970,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 933.309,
+          "duration_ms": 927,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 875.648,
+          "duration_ms": 867,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 976.02,
+      "hot_ms": 875.648,
+      "errors": 0
+    },
+    {
+      "n": 28,
+      "sql": "SELECT CounterID, AVG(STRLEN(URL)) AS l, COUNT(*) AS c FROM bench.hits WHERE URL \u003c\u003e '' GROUP BY CounterID HAVING COUNT(*) \u003e 100000 ORDER BY l DESC LIMIT 25;",
+      "tries": [
+        {
+          "wall_ms": 2490.479,
+          "duration_ms": 2488,
+          "total_rows": 12,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 5498,
+            "peers": 4,
+            "readBytes": 174234240,
+            "scanBytes": 127943759,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2460.569,
+          "duration_ms": 2456,
+          "total_rows": 12,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 5494,
+            "peers": 4,
+            "readBytes": 174234240,
+            "scanBytes": 127943759,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2457.793,
+          "duration_ms": 2453,
+          "total_rows": 12,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 5510,
+            "peers": 4,
+            "readBytes": 174234240,
+            "scanBytes": 127943759,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2490.479,
+      "hot_ms": 2457.793,
+      "errors": 0
+    },
+    {
+      "n": 29,
+      "sql": "SELECT REGEXP_REPLACE(Referer, '^https?://(?:www\\.)?([^/]+)/.*$', '\\1') AS k, AVG(STRLEN(Referer)) AS l, COUNT(*) AS c, MIN(Referer) FROM bench.hits WHERE Referer \u003c\u003e '' GROUP BY k HAVING COUNT(*) \u003e 100000 ORDER BY l DESC LIMIT 25;",
+      "tries": [
+        {
+          "wall_ms": 8282.537,
+          "duration_ms": 8279,
+          "total_rows": 15,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 71505044,
+            "peers": 4,
+            "readBytes": 207788672,
+            "scanBytes": 160128747,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 8374.362,
+          "duration_ms": 8373,
+          "total_rows": 15,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 71511672,
+            "peers": 4,
+            "readBytes": 207788672,
+            "scanBytes": 160128747,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 7813.25,
+          "duration_ms": 7810,
+          "total_rows": 15,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 71499154,
+            "peers": 4,
+            "readBytes": 207788672,
+            "scanBytes": 160128747,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 8282.537,
+      "hot_ms": 7813.25,
+      "errors": 0
+    },
+    {
+      "n": 30,
+      "sql": "SELECT SUM(ResolutionWidth), SUM(ResolutionWidth + 1), SUM(ResolutionWidth + 2), SUM(ResolutionWidth + 3), SUM(ResolutionWidth + 4), SUM(ResolutionWidth + 5), SUM(ResolutionWidth + 6), SUM(ResolutionWidth + 7), SUM(ResolutionWidth + 8), SUM(ResolutionWidth + 9), SUM(ResolutionWidth + 10), SUM(ResolutionWidth + 11), SUM(ResolutionWidth + 12), SUM(ResolutionWidth + 13), SUM(ResolutionWidth + 14), SUM(ResolutionWidth + 15), SUM(ResolutionWidth + 16), SUM(ResolutionWidth + 17), SUM(ResolutionWidth + 18), SUM(ResolutionWidth + 19), SUM(ResolutionWidth + 20), SUM(ResolutionWidth + 21), SUM(ResolutionWidth + 22), SUM(ResolutionWidth + 23), SUM(ResolutionWidth + 24), SUM(ResolutionWidth + 25), SUM(ResolutionWidth + 26), SUM(ResolutionWidth + 27), SUM(ResolutionWidth + 28), SUM(ResolutionWidth + 29), SUM(ResolutionWidth + 30), SUM(ResolutionWidth + 31), SUM(ResolutionWidth + 32), SUM(ResolutionWidth + 33), SUM(ResolutionWidth + 34), SUM(ResolutionWidth + 35), SUM(ResolutionWidth + 36), SUM(ResolutionWidth + 37), SUM(ResolutionWidth + 38), SUM(ResolutionWidth + 39), SUM(ResolutionWidth + 40), SUM(ResolutionWidth + 41), SUM(ResolutionWidth + 42), SUM(ResolutionWidth + 43), SUM(ResolutionWidth + 44), SUM(ResolutionWidth + 45), SUM(ResolutionWidth + 46), SUM(ResolutionWidth + 47), SUM(ResolutionWidth + 48), SUM(ResolutionWidth + 49), SUM(ResolutionWidth + 50), SUM(ResolutionWidth + 51), SUM(ResolutionWidth + 52), SUM(ResolutionWidth + 53), SUM(ResolutionWidth + 54), SUM(ResolutionWidth + 55), SUM(ResolutionWidth + 56), SUM(ResolutionWidth + 57), SUM(ResolutionWidth + 58), SUM(ResolutionWidth + 59), SUM(ResolutionWidth + 60), SUM(ResolutionWidth + 61), SUM(ResolutionWidth + 62), SUM(ResolutionWidth + 63), SUM(ResolutionWidth + 64), SUM(ResolutionWidth + 65), SUM(ResolutionWidth + 66), SUM(ResolutionWidth + 67), SUM(ResolutionWidth + 68), SUM(ResolutionWidth + 69), SUM(ResolutionWidth + 70), SUM(ResolutionWidth + 71), SUM(ResolutionWidth + 72), SUM(ResolutionWidth + 73), SUM(ResolutionWidth + 74), SUM(ResolutionWidth + 75), SUM(ResolutionWidth + 76), SUM(ResolutionWidth + 77), SUM(ResolutionWidth + 78), SUM(ResolutionWidth + 79), SUM(ResolutionWidth + 80), SUM(ResolutionWidth + 81), SUM(ResolutionWidth + 82), SUM(ResolutionWidth + 83), SUM(ResolutionWidth + 84), SUM(ResolutionWidth + 85), SUM(ResolutionWidth + 86), SUM(ResolutionWidth + 87), SUM(ResolutionWidth + 88), SUM(ResolutionWidth + 89) FROM bench.hits;",
+      "tries": [
+        {
+          "wall_ms": 1710.529,
+          "duration_ms": 1707,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 70160,
+            "peers": 4,
+            "readBytes": 13277824,
+            "scanBytes": 2232411,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1726.663,
+          "duration_ms": 1724,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 70160,
+            "peers": 4,
+            "readBytes": 13277824,
+            "scanBytes": 2232411,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1817.252,
+          "duration_ms": 1815,
+          "total_rows": 1,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 70160,
+            "peers": 4,
+            "readBytes": 13277824,
+            "scanBytes": 2232411,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1710.529,
+      "hot_ms": 1726.663,
+      "errors": 0
+    },
+    {
+      "n": 31,
+      "sql": "SELECT SearchEngineID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM bench.hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchEngineID, ClientIP ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2250.995,
+          "duration_ms": 2249,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 9927832,
+            "peers": 4,
+            "readBytes": 74095232,
+            "scanBytes": 39175217,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2205.259,
+          "duration_ms": 2202,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 9932447,
+            "peers": 4,
+            "readBytes": 74095232,
+            "scanBytes": 39175217,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2140.731,
+          "duration_ms": 2138,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 9930536,
+            "peers": 4,
+            "readBytes": 74095232,
+            "scanBytes": 39175217,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2250.995,
+      "hot_ms": 2140.731,
+      "errors": 0
+    },
+    {
+      "n": 32,
+      "sql": "SELECT WatchID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM bench.hits WHERE SearchPhrase \u003c\u003e '' GROUP BY WatchID, ClientIP ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 2365.891,
+          "duration_ms": 2362,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 24180507,
+            "peers": 4,
+            "readBytes": 160078464,
+            "scanBytes": 117663316,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2310.098,
+          "duration_ms": 2308,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 24178614,
+            "peers": 4,
+            "readBytes": 160078464,
+            "scanBytes": 117663316,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 2384.392,
+          "duration_ms": 2382,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 24179333,
+            "peers": 4,
+            "readBytes": 160078464,
+            "scanBytes": 117663316,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 2365.891,
+      "hot_ms": 2310.098,
+      "errors": 0
+    },
+    {
+      "n": 33,
+      "sql": "SELECT WatchID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM bench.hits GROUP BY WatchID, ClientIP ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 4161.439,
+          "duration_ms": 4160,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 167797056,
+            "peers": 4,
+            "readBytes": 128621184,
+            "scanBytes": 95099803,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 3999.858,
+          "duration_ms": 3997,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 167795049,
+            "peers": 4,
+            "readBytes": 128621184,
+            "scanBytes": 95099803,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 4028.351,
+          "duration_ms": 4027,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 167796105,
+            "peers": 4,
+            "readBytes": 128621184,
+            "scanBytes": 95099803,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 4161.439,
+      "hot_ms": 3999.858,
+      "errors": 0
+    },
+    {
+      "n": 34,
+      "sql": "SELECT URL, COUNT(*) AS c FROM bench.hits GROUP BY URL ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 3825.236,
+          "duration_ms": 3820,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 173967206,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 3838.495,
+          "duration_ms": 3836,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 173968092,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 4054.338,
+          "duration_ms": 4050,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 174371315,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 3825.236,
+      "hot_ms": 3838.495,
+      "errors": 0
+    },
+    {
+      "n": 35,
+      "sql": "SELECT 1, URL, COUNT(*) AS c FROM bench.hits GROUP BY 1, URL ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 3837.713,
+          "duration_ms": 3836,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 174367049,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 3797.615,
+          "duration_ms": 3795,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 173986713,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 3882.721,
+          "duration_ms": 3881,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 173968784,
+            "peers": 4,
+            "readBytes": 166894208,
+            "scanBytes": 127942064,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 3837.713,
+      "hot_ms": 3797.615,
+      "errors": 0
+    },
+    {
+      "n": 36,
+      "sql": "SELECT ClientIP, ClientIP - 1, ClientIP - 2, ClientIP - 3, COUNT(*) AS c FROM bench.hits GROUP BY ClientIP, ClientIP - 1, ClientIP - 2, ClientIP - 3 ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 1991.296,
+          "duration_ms": 1987,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32412894,
+            "peers": 4,
+            "readBytes": 22715008,
+            "scanBytes": 12038199,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1969.706,
+          "duration_ms": 1967,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32380739,
+            "peers": 4,
+            "readBytes": 22715008,
+            "scanBytes": 12038199,
+            "shards": 4
+          },
+          "status": 200
+        },
+        {
+          "wall_ms": 1921.345,
+          "duration_ms": 1919,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": {
+            "backend": null,
+            "burst": 0,
+            "burstRefused": null,
+            "burstWaitMs": 0,
+            "partialBytes": 32406394,
+            "peers": 4,
+            "readBytes": 22715008,
+            "scanBytes": 12038199,
+            "shards": 4
+          },
+          "status": 200
+        }
+      ],
+      "first_ms": 1991.296,
+      "hot_ms": 1921.345,
+      "errors": 0
+    },
+    {
+      "n": 37,
+      "sql": "SELECT URL, COUNT(*) AS PageViews FROM bench.hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND DontCountHits = 0 AND IsRefresh = 0 AND URL \u003c\u003e '' GROUP BY URL ORDER BY PageViews DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 1232.243,
+          "duration_ms": 1224,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 954.368,
+          "duration_ms": 948,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1006.678,
+          "duration_ms": 999,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1232.243,
+      "hot_ms": 954.368,
+      "errors": 0
+    },
+    {
+      "n": 38,
+      "sql": "SELECT Title, COUNT(*) AS PageViews FROM bench.hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND DontCountHits = 0 AND IsRefresh = 0 AND Title \u003c\u003e '' GROUP BY Title ORDER BY PageViews DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 872.684,
+          "duration_ms": 865,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 922.773,
+          "duration_ms": 916,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 951.369,
+          "duration_ms": 943,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 872.684,
+      "hot_ms": 922.773,
+      "errors": 0
+    },
+    {
+      "n": 39,
+      "sql": "SELECT URL, COUNT(*) AS PageViews FROM bench.hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 AND IsLink \u003c\u003e 0 AND IsDownload = 0 GROUP BY URL ORDER BY PageViews DESC LIMIT 10 OFFSET 1000;",
+      "tries": [
+        {
+          "wall_ms": 1013.717,
+          "duration_ms": 1006,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 921.102,
+          "duration_ms": 914,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 952.27,
+          "duration_ms": 945,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1013.717,
+      "hot_ms": 921.102,
+      "errors": 0
+    },
+    {
+      "n": 40,
+      "sql": "SELECT TraficSourceID, SearchEngineID, AdvEngineID, CASE WHEN (SearchEngineID = 0 AND AdvEngineID = 0) THEN Referer ELSE '' END AS Src, URL AS Dst, COUNT(*) AS PageViews FROM bench.hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 GROUP BY TraficSourceID, SearchEngineID, AdvEngineID, Src, Dst ORDER BY PageViews DESC LIMIT 10 OFFSET 1000;",
+      "tries": [
+        {
+          "wall_ms": 1193.182,
+          "duration_ms": 1187,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1273.728,
+          "duration_ms": 1266,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1205.421,
+          "duration_ms": 1199,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1193.182,
+      "hot_ms": 1205.421,
+      "errors": 0
+    },
+    {
+      "n": 41,
+      "sql": "SELECT URLHash, EventDate, COUNT(*) AS PageViews FROM bench.hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 AND TraficSourceID IN (-1, 6) AND RefererHash = 3594120000172545465 GROUP BY URLHash, EventDate ORDER BY PageViews DESC LIMIT 10 OFFSET 100;",
+      "tries": [
+        {
+          "wall_ms": 716.558,
+          "duration_ms": 710,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 804.183,
+          "duration_ms": 798,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 880.567,
+          "duration_ms": 874,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 716.558,
+      "hot_ms": 804.183,
+      "errors": 0
+    },
+    {
+      "n": 42,
+      "sql": "SELECT WindowClientWidth, WindowClientHeight, COUNT(*) AS PageViews FROM bench.hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 AND DontCountHits = 0 AND URLHash = 2868770270353813622 GROUP BY WindowClientWidth, WindowClientHeight ORDER BY PageViews DESC LIMIT 10 OFFSET 10000;",
+      "tries": [
+        {
+          "wall_ms": 855.147,
+          "duration_ms": 850,
+          "total_rows": 0,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 736.996,
+          "duration_ms": 728,
+          "total_rows": 0,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 809.518,
+          "duration_ms": 803,
+          "total_rows": 0,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 855.147,
+      "hot_ms": 736.996,
+      "errors": 0
+    },
+    {
+      "n": 43,
+      "sql": "SELECT DATE_TRUNC('minute', EventTime) AS M, COUNT(*) AS PageViews FROM bench.hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-14' AND EventDate \u003c= '2013-07-15' AND IsRefresh = 0 AND DontCountHits = 0 GROUP BY DATE_TRUNC('minute', EventTime) ORDER BY DATE_TRUNC('minute', EventTime) LIMIT 10 OFFSET 1000;",
+      "tries": [
+        {
+          "wall_ms": 779.737,
+          "duration_ms": 774,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 788.091,
+          "duration_ms": 782,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 863.184,
+          "duration_ms": 857,
+          "total_rows": 10,
+          "file_cache": "used",
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 779.737,
+      "hot_ms": 788.091,
+      "errors": 0
+    }
+  ]
+}

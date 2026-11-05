@@ -143,90 +143,96 @@ them for a local run. If a port is in use, set `SMOLQUERY_PORT` (4000),
 <!-- results:start -->
 ### Latest run
 
-[`4a72dc3`](https://github.com/smolquery/smolquery/commit/4a72dc3b4a81318fe9ef5d94fa13fb2ee91b9ecc) on 2026-11-02: **ok** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/41542675341))
+[`4a72dc3`](https://github.com/smolquery/smolquery/commit/4a72dc3b4a81318fe9ef5d94fa13fb2ee91b9ecc) on 2026-11-05: **ok** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/42111347768))
+
+| system | version | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| smolquery | [`4a72dc3`](https://github.com/smolquery/smolquery/commit/4a72dc3b4a81318fe9ef5d94fa13fb2ee91b9ecc) | ok | 136.8 | 73100 | 13.3 | 43/43 | 91.94 | 89.64 | 1772 |
+| ClickHouse | 26.10.2.103 | ok | 97.2 | 102836 | 0.0 | 43/43 | 4.95 | 3.90 | 36 |
+| VictoriaLogs | v1.53.0 | ok | 173.4 | 57672 | 0.0 | 43/43 | 34.99 | 33.64 | 187 |
 
 ### History
 
-| date | commit | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| 2026-11-02 | [`4a72dc3`](https://github.com/smolquery/smolquery/commit/4a72dc3b4a81318fe9ef5d94fa13fb2ee91b9ecc) | ok | 168.2 | 59471 | 20.0 | 43/43 | 109.39 | 107.30 | 2142 |
-| 2026-11-01 | [`9e15395`](https://github.com/smolquery/smolquery/commit/9e153953c61e06847301103db4b70ebdb0dcca23) | ok | 174.0 | 57485 | 56.4 | 43/43 | 115.11 | 112.43 | 2269 |
-| 2026-10-30 | [`d675422`](https://github.com/smolquery/smolquery/commit/d6754225a32fdeb4e7188263728fe2476bbe28cf) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
-| 2026-10-29 | [`5dc2144`](https://github.com/smolquery/smolquery/commit/5dc21443fa37ae2ab8cef41e0e9a6cf0f1bf00b0) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
-| 2026-10-29 | [`8930223`](https://github.com/smolquery/smolquery/commit/8930223fa562009fe73c41f658aad90da6e715ba) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
-| 2026-10-29 | [`f3b0d5d`](https://github.com/smolquery/smolquery/commit/f3b0d5d32e6dde598f54e6a1eaba65a42949e432) | ok | 169.6 | 58957 | 26.3 | 43/43 | 53.64 | 52.86 | 1013 |
-| 2026-10-28 | [`d12dc63`](https://github.com/smolquery/smolquery/commit/d12dc630b4d1e25c3812432f0010d2d8952853da) | ok | 119.2 | 83869 | 18.2 | 43/43 | 74.66 | 73.46 | 1455 |
-| 2026-10-28 | [`88ebd11`](https://github.com/smolquery/smolquery/commit/88ebd112cde29ec5d9aa99f48b357b84eab8aa1c) | ok | 149.9 | 66693 | 64.4 | 43/43 | 99.02 | 96.71 | 1891 |
-| 2026-10-26 | [`77155b0`](https://github.com/smolquery/smolquery/commit/77155b07e1b359cc60ceac53d54f75fbae4de75f) | ok | 155.8 | 64188 | 65.2 | 43/43 | 111.06 | 107.86 | 2113 |
-| 2026-10-26 | [`309425e`](https://github.com/smolquery/smolquery/commit/309425e8ee69198a531074e21398b6136b0054bf) | ok | 131.2 | 76223 | 64.2 | 43/43 | 88.61 | 86.13 | 1680 |
-| 2026-10-24 | [`75584d6`](https://github.com/smolquery/smolquery/commit/75584d61160a7dab5bfe88b5dc8eca7696ab9a5a) | ok | 120.8 | 82754 | 68.4 | 43/43 | 85.42 | 83.35 | 1620 |
-| 2026-10-24 | [`e607d60`](https://github.com/smolquery/smolquery/commit/e607d60c25050fe60085121e6edf31c4f1fa4024) | ok | 121.4 | 82340 | 62.7 | 43/43 | 84.81 | 82.60 | 1618 |
-| 2026-10-24 | [`d3977f4`](https://github.com/smolquery/smolquery/commit/d3977f40be0295e5485d4b89cfe7a0644d9ba015) | ok | 153.2 | 65253 | 13.2 | 43/43 | 100.20 | 97.58 | 1921 |
-| 2026-10-24 | [`19d0758`](https://github.com/smolquery/smolquery/commit/19d0758b48fca9103fc63cc7318d0b77cd9ccd52) | ok | 159.0 | 62902 | 58.3 | 43/43 | 101.20 | 98.48 | 1914 |
-| 2026-10-24 | [`d171282`](https://github.com/smolquery/smolquery/commit/d17128269fb3a9a0fb47e224fb1b9851120337a4) | ok | 152.0 | 65801 | 64.1 | 43/43 | 98.93 | 98.27 | 1930 |
-| 2026-10-24 | [`521fece`](https://github.com/smolquery/smolquery/commit/521feceb478e86d87c1f2d29954e621f9df4bd05) | ok | 157.1 | 63663 | 13.0 | 43/43 | 103.34 | 100.25 | 1968 |
-| 2026-10-23 | [`2434d95`](https://github.com/smolquery/smolquery/commit/2434d95501910f86b8b2b2b0a0a4772e5f564795) | ok | 155.9 | 64128 | 64.7 | 43/43 | 100.26 | 96.45 | 1895 |
-| 2026-10-23 | [`4b1e422`](https://github.com/smolquery/smolquery/commit/4b1e4220327f5db42b63d6e4a042ef7f24b879c9) | ok | 123.3 | 81079 | 68.3 | 43/43 | 87.44 | 81.68 | 1573 |
-| 2026-10-23 | [`6f09296`](https://github.com/smolquery/smolquery/commit/6f092961fd8c3bcd6bf216064c46563ba9d7677b) | ok | 144.8 | 69054 | 64.2 | 43/43 | 90.61 | 88.70 | 1706 |
-| 2026-10-23 | [`e7913f1`](https://github.com/smolquery/smolquery/commit/e7913f17469cbd3a5d395bd73ab8f346f221f751) | ok | 141.7 | 70595 | 64.0 | 43/43 | 88.81 | 86.73 | 1652 |
-| 2026-10-20 | [`6aa484b`](https://github.com/smolquery/smolquery/commit/6aa484bcb527b0bdee9cc01df1b01d613b7f714e) | ok | 154.8 | 64585 | 94.9 | 43/43 | 45.51 | 43.25 | 824 |
-| 2026-10-19 | [`8b2fe19`](https://github.com/smolquery/smolquery/commit/8b2fe1904d17d3f8bedf37108f6e33778dfcb294) | ok | 143.8 | 69549 | 30.6 | 43/43 | 38.90 | 36.37 | 704 |
-| 2026-10-19 | [`e97db80`](https://github.com/smolquery/smolquery/commit/e97db80e9fb8cda91ab39a67d89dc37eeb8e477c) | ok | 119.9 | 83437 | 26.3 | 43/43 | 76.37 | 71.54 | 1386 |
-| 2026-10-18 | [`e88220c`](https://github.com/smolquery/smolquery/commit/e88220c6c8fcd2a971fb946a6587ec5095e5b4bc) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |
-| 2026-10-18 | [`c1d88b0`](https://github.com/smolquery/smolquery/commit/c1d88b02c47263ed2317551a876741b6ecb632a0) | ok | 156.3 | 63972 | 25.3 | 43/43 | 96.24 | 91.54 | 1772 |
-| 2026-10-18 | [`76cea1a`](https://github.com/smolquery/smolquery/commit/76cea1a524f7d04ef2cf9d7310f0d076a4aeb11e) | ok | 140.0 | 71453 | 64.8 | 43/43 | 93.12 | 87.97 | 1700 |
-| 2026-10-18 | [`761787f`](https://github.com/smolquery/smolquery/commit/761787fdcd3bfed79d502a5cddca4b50f4cfb3bc) | ok | 147.6 | 67770 | 30.8 | 43/43 | 38.99 | 36.98 | 716 |
-| 2026-10-18 | [`83c63ad`](https://github.com/smolquery/smolquery/commit/83c63ad0427ad528f52ec879e6b0d9026b02c733) | ok | 145.8 | 68565 | 64.9 | 43/43 | 91.16 | 87.44 | 1709 |
-| 2026-10-18 | [`aa7cc68`](https://github.com/smolquery/smolquery/commit/aa7cc68c6dd3d2e3c98cb1f82561060a798f80df) | ok | 144.0 | 69443 | 36.3 | 43/43 | 38.41 | 35.99 | 692 |
-| 2026-10-18 | [`6e62333`](https://github.com/smolquery/smolquery/commit/6e62333b94d480df543d9b46214db410e435bdde) | ok | 143.5 | 69678 | 70.1 | 43/43 | 69.42 | 64.88 | 1254 |
+| date | commit | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms | ClickHouse hot sum s | VictoriaLogs hot sum s |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2026-11-05 | [`4a72dc3`](https://github.com/smolquery/smolquery/commit/4a72dc3b4a81318fe9ef5d94fa13fb2ee91b9ecc) | ok | 136.8 | 73100 | 13.3 | 43/43 | 91.94 | 89.64 | 1772 | 3.90 | 33.64 |
+| 2026-11-02 | [`4a72dc3`](https://github.com/smolquery/smolquery/commit/4a72dc3b4a81318fe9ef5d94fa13fb2ee91b9ecc) | ok | 168.2 | 59471 | 20.0 | 43/43 | 109.39 | 107.30 | 2142 |  |  |
+| 2026-11-01 | [`9e15395`](https://github.com/smolquery/smolquery/commit/9e153953c61e06847301103db4b70ebdb0dcca23) | ok | 174.0 | 57485 | 56.4 | 43/43 | 115.11 | 112.43 | 2269 |  |  |
+| 2026-10-30 | [`d675422`](https://github.com/smolquery/smolquery/commit/d6754225a32fdeb4e7188263728fe2476bbe28cf) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |  |  |
+| 2026-10-29 | [`5dc2144`](https://github.com/smolquery/smolquery/commit/5dc21443fa37ae2ab8cef41e0e9a6cf0f1bf00b0) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |  |  |
+| 2026-10-29 | [`8930223`](https://github.com/smolquery/smolquery/commit/8930223fa562009fe73c41f658aad90da6e715ba) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |  |  |
+| 2026-10-29 | [`f3b0d5d`](https://github.com/smolquery/smolquery/commit/f3b0d5d32e6dde598f54e6a1eaba65a42949e432) | ok | 169.6 | 58957 | 26.3 | 43/43 | 53.64 | 52.86 | 1013 |  |  |
+| 2026-10-28 | [`d12dc63`](https://github.com/smolquery/smolquery/commit/d12dc630b4d1e25c3812432f0010d2d8952853da) | ok | 119.2 | 83869 | 18.2 | 43/43 | 74.66 | 73.46 | 1455 |  |  |
+| 2026-10-28 | [`88ebd11`](https://github.com/smolquery/smolquery/commit/88ebd112cde29ec5d9aa99f48b357b84eab8aa1c) | ok | 149.9 | 66693 | 64.4 | 43/43 | 99.02 | 96.71 | 1891 |  |  |
+| 2026-10-26 | [`77155b0`](https://github.com/smolquery/smolquery/commit/77155b07e1b359cc60ceac53d54f75fbae4de75f) | ok | 155.8 | 64188 | 65.2 | 43/43 | 111.06 | 107.86 | 2113 |  |  |
+| 2026-10-26 | [`309425e`](https://github.com/smolquery/smolquery/commit/309425e8ee69198a531074e21398b6136b0054bf) | ok | 131.2 | 76223 | 64.2 | 43/43 | 88.61 | 86.13 | 1680 |  |  |
+| 2026-10-24 | [`75584d6`](https://github.com/smolquery/smolquery/commit/75584d61160a7dab5bfe88b5dc8eca7696ab9a5a) | ok | 120.8 | 82754 | 68.4 | 43/43 | 85.42 | 83.35 | 1620 |  |  |
+| 2026-10-24 | [`e607d60`](https://github.com/smolquery/smolquery/commit/e607d60c25050fe60085121e6edf31c4f1fa4024) | ok | 121.4 | 82340 | 62.7 | 43/43 | 84.81 | 82.60 | 1618 |  |  |
+| 2026-10-24 | [`d3977f4`](https://github.com/smolquery/smolquery/commit/d3977f40be0295e5485d4b89cfe7a0644d9ba015) | ok | 153.2 | 65253 | 13.2 | 43/43 | 100.20 | 97.58 | 1921 |  |  |
+| 2026-10-24 | [`19d0758`](https://github.com/smolquery/smolquery/commit/19d0758b48fca9103fc63cc7318d0b77cd9ccd52) | ok | 159.0 | 62902 | 58.3 | 43/43 | 101.20 | 98.48 | 1914 |  |  |
+| 2026-10-24 | [`d171282`](https://github.com/smolquery/smolquery/commit/d17128269fb3a9a0fb47e224fb1b9851120337a4) | ok | 152.0 | 65801 | 64.1 | 43/43 | 98.93 | 98.27 | 1930 |  |  |
+| 2026-10-24 | [`521fece`](https://github.com/smolquery/smolquery/commit/521feceb478e86d87c1f2d29954e621f9df4bd05) | ok | 157.1 | 63663 | 13.0 | 43/43 | 103.34 | 100.25 | 1968 |  |  |
+| 2026-10-23 | [`2434d95`](https://github.com/smolquery/smolquery/commit/2434d95501910f86b8b2b2b0a0a4772e5f564795) | ok | 155.9 | 64128 | 64.7 | 43/43 | 100.26 | 96.45 | 1895 |  |  |
+| 2026-10-23 | [`4b1e422`](https://github.com/smolquery/smolquery/commit/4b1e4220327f5db42b63d6e4a042ef7f24b879c9) | ok | 123.3 | 81079 | 68.3 | 43/43 | 87.44 | 81.68 | 1573 |  |  |
+| 2026-10-23 | [`6f09296`](https://github.com/smolquery/smolquery/commit/6f092961fd8c3bcd6bf216064c46563ba9d7677b) | ok | 144.8 | 69054 | 64.2 | 43/43 | 90.61 | 88.70 | 1706 |  |  |
+| 2026-10-23 | [`e7913f1`](https://github.com/smolquery/smolquery/commit/e7913f17469cbd3a5d395bd73ab8f346f221f751) | ok | 141.7 | 70595 | 64.0 | 43/43 | 88.81 | 86.73 | 1652 |  |  |
+| 2026-10-20 | [`6aa484b`](https://github.com/smolquery/smolquery/commit/6aa484bcb527b0bdee9cc01df1b01d613b7f714e) | ok | 154.8 | 64585 | 94.9 | 43/43 | 45.51 | 43.25 | 824 |  |  |
+| 2026-10-19 | [`8b2fe19`](https://github.com/smolquery/smolquery/commit/8b2fe1904d17d3f8bedf37108f6e33778dfcb294) | ok | 143.8 | 69549 | 30.6 | 43/43 | 38.90 | 36.37 | 704 |  |  |
+| 2026-10-19 | [`e97db80`](https://github.com/smolquery/smolquery/commit/e97db80e9fb8cda91ab39a67d89dc37eeb8e477c) | ok | 119.9 | 83437 | 26.3 | 43/43 | 76.37 | 71.54 | 1386 |  |  |
+| 2026-10-18 | [`e88220c`](https://github.com/smolquery/smolquery/commit/e88220c6c8fcd2a971fb946a6587ec5095e5b4bc) | load_failed | 0.0 | 0 | 0.0 | 0/0 | 0.00 | 0.00 | 0 |  |  |
+| 2026-10-18 | [`c1d88b0`](https://github.com/smolquery/smolquery/commit/c1d88b02c47263ed2317551a876741b6ecb632a0) | ok | 156.3 | 63972 | 25.3 | 43/43 | 96.24 | 91.54 | 1772 |  |  |
+| 2026-10-18 | [`76cea1a`](https://github.com/smolquery/smolquery/commit/76cea1a524f7d04ef2cf9d7310f0d076a4aeb11e) | ok | 140.0 | 71453 | 64.8 | 43/43 | 93.12 | 87.97 | 1700 |  |  |
+| 2026-10-18 | [`761787f`](https://github.com/smolquery/smolquery/commit/761787fdcd3bfed79d502a5cddca4b50f4cfb3bc) | ok | 147.6 | 67770 | 30.8 | 43/43 | 38.99 | 36.98 | 716 |  |  |
+| 2026-10-18 | [`83c63ad`](https://github.com/smolquery/smolquery/commit/83c63ad0427ad528f52ec879e6b0d9026b02c733) | ok | 145.8 | 68565 | 64.9 | 43/43 | 91.16 | 87.44 | 1709 |  |  |
+| 2026-10-18 | [`aa7cc68`](https://github.com/smolquery/smolquery/commit/aa7cc68c6dd3d2e3c98cb1f82561060a798f80df) | ok | 144.0 | 69443 | 36.3 | 43/43 | 38.41 | 35.99 | 692 |  |  |
 
 <details><summary>Per-query times, latest run</summary>
 
-| query | first ms | hot ms | previous hot ms | change |
-|---|---:|---:|---:|---:|
-| Q1 | 495 | 475 | 513 | -7% |
-| Q2 | 1994 | 1945 | 1534 | +27% |
-| Q3 | 2001 | 1721 | 2243 | -23% |
-| Q4 | 2393 | 2013 | 2123 | -5% |
-| Q5 | 3172 | 3005 | 3185 | -6% |
-| Q6 | 3170 | 3131 | 3294 | -5% |
-| Q7 | 2064 | 1938 | 2214 | -12% |
-| Q8 | 2023 | 1906 | 1919 | -1% |
-| Q9 | 2357 | 2386 | 2584 | -8% |
-| Q10 | 2462 | 2499 | 2665 | -6% |
-| Q11 | 2057 | 2099 | 2241 | -6% |
-| Q12 | 2122 | 2021 | 2238 | -10% |
-| Q13 | 2641 | 2599 | 2751 | -6% |
-| Q14 | 3034 | 2855 | 2946 | -3% |
-| Q15 | 2576 | 2682 | 2784 | -4% |
-| Q16 | 2226 | 2168 | 2359 | -8% |
-| Q17 | 2843 | 2919 | 2981 | -2% |
-| Q18 | 2939 | 2835 | 3007 | -6% |
-| Q19 | 3505 | 3506 | 3717 | -6% |
-| Q20 | 1015 | 922 | 1053 | -12% |
-| Q21 | 3029 | 2914 | 3187 | -9% |
-| Q22 | 2993 | 2990 | 3230 | -7% |
-| Q23 | 4186 | 4132 | 4094 | +1% |
-| Q24 | 3802 | 3821 | 3886 | -2% |
-| Q25 | 1179 | 1124 | 1219 | -8% |
-| Q26 | 1156 | 1138 | 1211 | -6% |
-| Q27 | 1221 | 1199 | 1241 | -3% |
-| Q28 | 3130 | 2887 | 3064 | -6% |
-| Q29 | 10026 | 10039 | 9985 | +1% |
-| Q30 | 2086 | 2131 | 2240 | -5% |
-| Q31 | 2583 | 2550 | 2699 | -6% |
-| Q32 | 2817 | 2879 | 2956 | -3% |
-| Q33 | 4699 | 4732 | 4805 | -2% |
-| Q34 | 4417 | 4359 | 4436 | -2% |
-| Q35 | 4330 | 4291 | 4483 | -4% |
-| Q36 | 2379 | 2345 | 2501 | -6% |
-| Q37 | 1317 | 1309 | 1337 | -2% |
-| Q38 | 1133 | 1067 | 1229 | -13% |
-| Q39 | 1242 | 1179 | 1349 | -13% |
-| Q40 | 1599 | 1597 | 1689 | -5% |
-| Q41 | 1014 | 1000 | 1117 | -10% |
-| Q42 | 982 | 996 | 1085 | -8% |
-| Q43 | 976 | 993 | 1039 | -4% |
+| query | first ms | hot ms | previous hot ms | change | ClickHouse hot ms | VictoriaLogs hot ms |
+|---|---:|---:|---:|---:|---:|---:|
+| Q1 | 384 | 342 | 475 | -28% | 1 | 1 |
+| Q2 | 1656 | 1662 | 1945 | -15% | 1 | 1 |
+| Q3 | 1751 | 1627 | 1721 | -5% | 11 | 62 |
+| Q4 | 1760 | 1724 | 2013 | -14% | 12 | 68 |
+| Q5 | 2797 | 2776 | 3005 | -8% | 41 | 237 |
+| Q6 | 2966 | 2898 | 3131 | -7% | 146 | 334 |
+| Q7 | 1555 | 1615 | 1938 | -17% | 4 | 7 |
+| Q8 | 1750 | 1712 | 1906 | -10% | 5 | 1 |
+| Q9 | 1969 | 2010 | 2386 | -16% | 79 | 453 |
+| Q10 | 2027 | 2094 | 2499 | -16% | 94 | 907 |
+| Q11 | 1752 | 1758 | 2099 | -16% | 21 | 97 |
+| Q12 | 1778 | 1765 | 2021 | -13% | 26 | 119 |
+| Q13 | 2172 | 2205 | 2599 | -15% | 102 | 381 |
+| Q14 | 2414 | 2413 | 2855 | -15% | 130 | 704 |
+| Q15 | 2228 | 2216 | 2682 | -17% | 121 | 401 |
+| Q16 | 1867 | 1832 | 2168 | -16% | 50 | 371 |
+| Q17 | 2491 | 2424 | 2919 | -17% | 188 | 1090 |
+| Q18 | 2452 | 2283 | 2835 | -19% | 7 | 1223 |
+| Q19 | 3037 | 2971 | 3506 | -15% | 269 | 2255 |
+| Q20 | 851 | 770 | 922 | -16% | 1 | 5 |
+| Q21 | 2560 | 2459 | 2914 | -16% | 78 | 328 |
+| Q22 | 2581 | 2529 | 2990 | -15% | 22 | 329 |
+| Q23 | 3449 | 3470 | 4132 | -16% | 253 | 410 |
+| Q24 | 3285 | 3113 | 3821 | -19% | 53 | 385 |
+| Q25 | 979 | 895 | 1124 | -20% | 6 | 170 |
+| Q26 | 875 | 859 | 1138 | -25% | 58 | 138 |
+| Q27 | 976 | 876 | 1199 | -27% | 6 | 179 |
+| Q28 | 2490 | 2458 | 2887 | -15% | 45 | 325 |
+| Q29 | 8283 | 7813 | 10039 | -22% | 466 | 4952 |
+| Q30 | 1711 | 1727 | 2131 | -19% | 16 | 2906 |
+| Q31 | 2251 | 2141 | 2550 | -16% | 73 | 829 |
+| Q32 | 2366 | 2310 | 2879 | -20% | 76 | 1175 |
+| Q33 | 4161 | 4000 | 4732 | -15% | 220 | 7722 |
+| Q34 | 3825 | 3838 | 4359 | -12% | 461 | 1586 |
+| Q35 | 3838 | 3798 | 4291 | -11% | 447 | 1824 |
+| Q36 | 1991 | 1921 | 2345 | -18% | 50 | 1149 |
+| Q37 | 1232 | 954 | 1309 | -27% | 50 | 105 |
+| Q38 | 873 | 923 | 1067 | -14% | 27 | 39 |
+| Q39 | 1014 | 921 | 1179 | -22% | 34 | 29 |
+| Q40 | 1193 | 1205 | 1597 | -25% | 118 | 269 |
+| Q41 | 717 | 804 | 1000 | -20% | 13 | 26 |
+| Q42 | 855 | 737 | 996 | -26% | 10 | 25 |
+| Q43 | 780 | 788 | 993 | -21% | 7 | 26 |
 
 </details>
 

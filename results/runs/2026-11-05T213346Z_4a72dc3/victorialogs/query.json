@@ -1,0 +1,1437 @@
+{
+  "started_at": "2026-11-05T21:32:00Z",
+  "finished_at": "2026-11-05T21:33:43Z",
+  "ref": "",
+  "tries": 3,
+  "options": {
+    "timeoutMs": 300000
+  },
+  "summary": {
+    "queries": 43,
+    "passed": 43,
+    "first_sum_s": 34.99432800000001,
+    "hot_sum_s": 33.64331599999999,
+    "hot_geomean_ms": 186.8559264810859
+  },
+  "queries": [
+    {
+      "n": 1,
+      "sql": "* | count()",
+      "tries": [
+        {
+          "wall_ms": 2.097,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.465,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.483,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 2.097,
+      "hot_ms": 1.465,
+      "errors": 0
+    },
+    {
+      "n": 2,
+      "sql": "{AdvEngineID!=0} | count()",
+      "tries": [
+        {
+          "wall_ms": 2.125,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.069,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.106,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 2.125,
+      "hot_ms": 1.069,
+      "errors": 0
+    },
+    {
+      "n": 3,
+      "sql": "* | sum(AdvEngineID), count(), avg(ResolutionWidth)",
+      "tries": [
+        {
+          "wall_ms": 69.213,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 62.32,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 61.566,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 69.213,
+      "hot_ms": 61.566,
+      "errors": 0
+    },
+    {
+      "n": 4,
+      "sql": "* | avg(UserID)",
+      "tries": [
+        {
+          "wall_ms": 73.567,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 68.189,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 67.939,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 73.567,
+      "hot_ms": 67.939,
+      "errors": 0
+    },
+    {
+      "n": 5,
+      "sql": "* | count_uniq(UserID)",
+      "tries": [
+        {
+          "wall_ms": 241.117,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 236.74,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 237.329,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 241.117,
+      "hot_ms": 236.74,
+      "errors": 0
+    },
+    {
+      "n": 6,
+      "sql": "* | count_uniq(SearchPhrase)",
+      "tries": [
+        {
+          "wall_ms": 315.867,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 369.169,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 333.848,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 315.867,
+      "hot_ms": 333.848,
+      "errors": 0
+    },
+    {
+      "n": 7,
+      "sql": "* | min(EventDate), max(EventDate)",
+      "tries": [
+        {
+          "wall_ms": 7.572,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 7.002,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 7.316,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 7.572,
+      "hot_ms": 7.002,
+      "errors": 0
+    },
+    {
+      "n": 8,
+      "sql": "{AdvEngineID!=0} | by (AdvEngineID) count() c | sort (c desc)",
+      "tries": [
+        {
+          "wall_ms": 1.233,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.091,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.019,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1.233,
+      "hot_ms": 1.019,
+      "errors": 0
+    },
+    {
+      "n": 9,
+      "sql": "* | by (RegionID) count_uniq(UserID) u | first 10 (u desc)",
+      "tries": [
+        {
+          "wall_ms": 456.709,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 453.877,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 452.867,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 456.709,
+      "hot_ms": 452.867,
+      "errors": 0
+    },
+    {
+      "n": 10,
+      "sql": "* | by (RegionID) sum(AdvEngineID), count() c, avg(ResolutionWidth), count_uniq(UserID) | first 10 (c desc)",
+      "tries": [
+        {
+          "wall_ms": 897.179,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 907.102,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 929.24,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 897.179,
+      "hot_ms": 907.102,
+      "errors": 0
+    },
+    {
+      "n": 11,
+      "sql": "MobilePhoneModel:* | by (MobilePhoneModel) count_uniq(UserID) u | first 10 (u desc)",
+      "tries": [
+        {
+          "wall_ms": 95.225,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 96.864,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 96.91,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 95.225,
+      "hot_ms": 96.864,
+      "errors": 0
+    },
+    {
+      "n": 12,
+      "sql": "MobilePhoneModel:* | by (MobilePhone, MobilePhoneModel) count_uniq(UserID) u | first 10 (u desc)",
+      "tries": [
+        {
+          "wall_ms": 121.164,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 126.564,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 118.872,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 121.164,
+      "hot_ms": 118.872,
+      "errors": 0
+    },
+    {
+      "n": 13,
+      "sql": "SearchPhrase:* | top 10 (SearchPhrase)",
+      "tries": [
+        {
+          "wall_ms": 370.512,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 380.944,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 383.08,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 370.512,
+      "hot_ms": 380.944,
+      "errors": 0
+    },
+    {
+      "n": 14,
+      "sql": "SearchPhrase:* | by (SearchPhrase) count_uniq(UserID) u | first 10 (u desc)",
+      "tries": [
+        {
+          "wall_ms": 767.836,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 703.712,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 723.95,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 767.836,
+      "hot_ms": 703.712,
+      "errors": 0
+    },
+    {
+      "n": 15,
+      "sql": "SearchPhrase:* | top 10 (SearchEngineID, SearchPhrase)",
+      "tries": [
+        {
+          "wall_ms": 382.008,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 401.453,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 403.568,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 382.008,
+      "hot_ms": 401.453,
+      "errors": 0
+    },
+    {
+      "n": 16,
+      "sql": "* | top 10 (UserID)",
+      "tries": [
+        {
+          "wall_ms": 362.48,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 386.28,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 370.784,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 362.48,
+      "hot_ms": 370.784,
+      "errors": 0
+    },
+    {
+      "n": 17,
+      "sql": "* | top 10 (UserID, SearchPhrase)",
+      "tries": [
+        {
+          "wall_ms": 1151.055,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1104.192,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1090.297,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1151.055,
+      "hot_ms": 1090.297,
+      "errors": 0
+    },
+    {
+      "n": 18,
+      "sql": "* | by (UserID, SearchPhrase) count() | limit 10",
+      "tries": [
+        {
+          "wall_ms": 1275.886,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1223.351,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1253.926,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1275.886,
+      "hot_ms": 1223.351,
+      "errors": 0
+    },
+    {
+      "n": 19,
+      "sql": "* | math floor((_time % 1h)/1m) m | top 10 (UserID, m, SearchPhrase)",
+      "tries": [
+        {
+          "wall_ms": 2482.994,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 2254.535,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 2338.929,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 2482.994,
+      "hot_ms": 2254.535,
+      "errors": 0
+    },
+    {
+      "n": 20,
+      "sql": "UserID:=435090932899640449 | keep UserID",
+      "tries": [
+        {
+          "wall_ms": 7.732,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 5.152,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 4.99,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 7.732,
+      "hot_ms": 4.99,
+      "errors": 0
+    },
+    {
+      "n": 21,
+      "sql": "URL:*google* | count()",
+      "tries": [
+        {
+          "wall_ms": 357.485,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 328.216,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 329.73,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 357.485,
+      "hot_ms": 328.216,
+      "errors": 0
+    },
+    {
+      "n": 22,
+      "sql": "URL:*google* SearchPhrase:* | by (SearchPhrase) min(URL), count() c | first 10 (c desc)",
+      "tries": [
+        {
+          "wall_ms": 330.664,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 331.658,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 328.741,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 330.664,
+      "hot_ms": 328.741,
+      "errors": 0
+    },
+    {
+      "n": 23,
+      "sql": "Title:*Google* -URL:*.google.* SearchPhrase:* | by (SearchPhrase) min(URL), min(Title), count() c, count_uniq(UserID) | first 10 (c desc)",
+      "tries": [
+        {
+          "wall_ms": 438.041,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 411.082,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 409.651,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 438.041,
+      "hot_ms": 409.651,
+      "errors": 0
+    },
+    {
+      "n": 24,
+      "sql": "URL:*google* | first 10 (_time)",
+      "tries": [
+        {
+          "wall_ms": 393.678,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 385.129,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 392.664,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 393.678,
+      "hot_ms": 385.129,
+      "errors": 0
+    },
+    {
+      "n": 25,
+      "sql": "SearchPhrase:* | first 10 (_time) | keep SearchPhrase",
+      "tries": [
+        {
+          "wall_ms": 168.933,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 170.109,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 169.726,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 168.933,
+      "hot_ms": 169.726,
+      "errors": 0
+    },
+    {
+      "n": 26,
+      "sql": "SearchPhrase:* | first 10 (SearchPhrase) | keep SearchPhrase",
+      "tries": [
+        {
+          "wall_ms": 137.78,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 138.866,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 138.182,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 137.78,
+      "hot_ms": 138.182,
+      "errors": 0
+    },
+    {
+      "n": 27,
+      "sql": "SearchPhrase:* | first 10 (_time, SearchPhrase) | keep SearchPhrase",
+      "tries": [
+        {
+          "wall_ms": 179.335,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 179.371,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 180.08,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 179.335,
+      "hot_ms": 179.371,
+      "errors": 0
+    },
+    {
+      "n": 28,
+      "sql": "URL:* | len(URL) url_len | by (CounterID) avg(url_len) l, count() c | c:\u003e100_000 | first 25 (l desc)",
+      "tries": [
+        {
+          "wall_ms": 325.855,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 327.183,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 325.007,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 325.855,
+      "hot_ms": 325.007,
+      "errors": 0
+    },
+    {
+      "n": 29,
+      "sql": "Referer:* | cp Referer k | replace_regexp('^https?://(?:www[.])?([^/]+)/.*$', '$1') at k | len(Referer) referer_len | by (k) avg(referer_len) l, count() c, min(Referer) | c:\u003e100_000 | first 25 (l desc)",
+      "tries": [
+        {
+          "wall_ms": 4941.916,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 4965.04,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 4952.261,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 4941.916,
+      "hot_ms": 4952.261,
+      "errors": 0
+    },
+    {
+      "n": 30,
+      "sql": "* | math ResolutionWidth x0, ResolutionWidth+1 x1, ResolutionWidth+2 x2, ResolutionWidth+3 x3, ResolutionWidth+4 x4, ResolutionWidth+5 x5, ResolutionWidth+6 x6, ResolutionWidth+7 x7, ResolutionWidth+8 x8,ResolutionWidth+9 x9, ResolutionWidth+10 x10, ResolutionWidth+11 x11, ResolutionWidth+12 x12, ResolutionWidth+13 x13, ResolutionWidth+14 x14, ResolutionWidth+15 x15, ResolutionWidth+16 x16, ResolutionWidth+17 x17, ResolutionWidth+18 x18, ResolutionWidth+19 x19, ResolutionWidth+20 x20, ResolutionWidth+21 x21, ResolutionWidth+22 x22, ResolutionWidth+23 x23, ResolutionWidth+24 x24, ResolutionWidth+25 x25, ResolutionWidth+26 x26, ResolutionWidth+27 x27, ResolutionWidth+28 x28, ResolutionWidth+29 x29, ResolutionWidth+30 x30, ResolutionWidth+31 x31, ResolutionWidth+32 x32, ResolutionWidth+33 x33, ResolutionWidth+34 x34, ResolutionWidth+35 x35, ResolutionWidth+36 x36, ResolutionWidth+37 x37, ResolutionWidth+38 x38, ResolutionWidth+39 x39, ResolutionWidth+40 x40, ResolutionWidth+41 x41, ResolutionWidth+42 x42, ResolutionWidth+43 x43, ResolutionWidth+44 x44, ResolutionWidth+45 x45, ResolutionWidth+46 x46, ResolutionWidth+47 x47, ResolutionWidth+48 x48, ResolutionWidth+49 x49, ResolutionWidth+50 x50, ResolutionWidth+51 x51, ResolutionWidth+52 x52, ResolutionWidth+53 x53, ResolutionWidth+54 x54, ResolutionWidth+55 x55, ResolutionWidth+56 x56, ResolutionWidth+57 x57, ResolutionWidth+58 x58, ResolutionWidth+59 x59, ResolutionWidth+60 x60, ResolutionWidth+61 x61, ResolutionWidth+62 x62, ResolutionWidth+63 x63, ResolutionWidth+64 x64, ResolutionWidth+65 x65, ResolutionWidth+66 x66, ResolutionWidth+67 x67, ResolutionWidth+68 x68, ResolutionWidth+69 x69, ResolutionWidth+70 x70, ResolutionWidth+71 x71, ResolutionWidth+72 x72, ResolutionWidth+73 x73, ResolutionWidth+74 x74, ResolutionWidth+75 x75, ResolutionWidth+76 x76, ResolutionWidth+77 x77, ResolutionWidth+78 x78, ResolutionWidth+79 x79, ResolutionWidth+80 x80, ResolutionWidth+81 x81, ResolutionWidth+82 x82, ResolutionWidth+83 x83, ResolutionWidth+84 x84, ResolutionWidth+85 x85, ResolutionWidth+86 x86, ResolutionWidth+87 x87, ResolutionWidth+88 x88, ResolutionWidth+89 x89 | sum(x0), sum(x1), sum(x2), sum(x3), sum(x4), sum(x5), sum(x6), sum(x7), sum(x8), sum(x9), sum(x10), sum(x11), sum(x12), sum(x13), sum(x14), sum(x15), sum(x16), sum(x17), sum(x18), sum(x19), sum(x20), sum(x21), sum(x22), sum(x23), sum(x24), sum(x25), sum(x26), sum(x27), sum(x28), sum(x29), sum(x30), sum(x31), sum(x32), sum(x33), sum(x34), sum(x35), sum(x36), sum(x37), sum(x38), sum(x39), sum(x40), sum(x41), sum(x42), sum(x43), sum(x44), sum(x45), sum(x46), sum(x47), sum(x48), sum(x49), sum(x50), sum(x51), sum(x52), sum(x53), sum(x54), sum(x55), sum(x56), sum(x57), sum(x58), sum(x59), sum(x60), sum(x61), sum(x62), sum(x63), sum(x64), sum(x65), sum(x66), sum(x67), sum(x68), sum(x69), sum(x70), sum(x71), sum(x72), sum(x73), sum(x74), sum(x75), sum(x76), sum(x77), sum(x78), sum(x79), sum(x80), sum(x81), sum(x82), sum(x83), sum(x84), sum(x85), sum(x86), sum(x87), sum(x88), sum(x89)",
+      "tries": [
+        {
+          "wall_ms": 2948.707,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 2906.489,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 2967.812,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 2948.707,
+      "hot_ms": 2906.489,
+      "errors": 0
+    },
+    {
+      "n": 31,
+      "sql": "SearchPhrase:* | by (SearchEngineID, ClientIP) count() c, sum(IsRefresh), avg(ResolutionWidth) | first 10 (c desc)",
+      "tries": [
+        {
+          "wall_ms": 878.804,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 829.229,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 879.867,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 878.804,
+      "hot_ms": 829.229,
+      "errors": 0
+    },
+    {
+      "n": 32,
+      "sql": "SearchPhrase:* | by (WatchID, ClientIP) count() c, sum(IsRefresh), avg(ResolutionWidth) | first 10 (c desc)",
+      "tries": [
+        {
+          "wall_ms": 1126.492,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1257.305,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1175.442,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1126.492,
+      "hot_ms": 1175.442,
+      "errors": 0
+    },
+    {
+      "n": 33,
+      "sql": "* | by (WatchID, ClientIP) count() c, sum(IsRefresh), avg(ResolutionWidth) | first 10 (c desc)",
+      "tries": [
+        {
+          "wall_ms": 8496.196,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 8062.516,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 7721.696,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 8496.196,
+      "hot_ms": 7721.696,
+      "errors": 0
+    },
+    {
+      "n": 34,
+      "sql": "* | top 10 (URL)",
+      "tries": [
+        {
+          "wall_ms": 1638.964,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1586.087,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1654.76,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1638.964,
+      "hot_ms": 1586.087,
+      "errors": 0
+    },
+    {
+      "n": 35,
+      "sql": "* | format '1' as x | top 10 (x, URL)",
+      "tries": [
+        {
+          "wall_ms": 1892.634,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1824.399,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1870.249,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1892.634,
+      "hot_ms": 1824.399,
+      "errors": 0
+    },
+    {
+      "n": 36,
+      "sql": "* | math ClientIP x0, ClientIP - 1 x1, ClientIP - 2 x2, ClientIP - 3 x3 | top 10 (x0, x1, x2, x3)",
+      "tries": [
+        {
+          "wall_ms": 1069.805,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1180.841,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1148.82,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1069.805,
+      "hot_ms": 1148.82,
+      "errors": 0
+    },
+    {
+      "n": 37,
+      "sql": "{CounterID=62} EventDate:\u003e='2013-07-01' EventDate:\u003c='2013-07-31' DontCountHits:=0 IsRefresh:=0 URL:* | top 10 (URL)",
+      "tries": [
+        {
+          "wall_ms": 107.69,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 104.637,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 113.493,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 107.69,
+      "hot_ms": 104.637,
+      "errors": 0
+    },
+    {
+      "n": 38,
+      "sql": "{CounterID=62} EventDate:\u003e='2013-07-01' EventDate:\u003c='2013-07-31' DontCountHits:=0 IsRefresh:=0 Title:* | top 10 (Title)",
+      "tries": [
+        {
+          "wall_ms": 39.593,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 39.085,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 42.118,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 39.593,
+      "hot_ms": 39.085,
+      "errors": 0
+    },
+    {
+      "n": 39,
+      "sql": "{CounterID=62} EventDate:\u003e='2013-07-01' EventDate:\u003c='2013-07-31' IsRefresh:=0 IsLink:!=0 IsDownload:=0 | by (URL) count() PageViews | sort (PageViews desc) limit 10 offset 1_000",
+      "tries": [
+        {
+          "wall_ms": 33.838,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 29.406,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 33.304,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 33.838,
+      "hot_ms": 29.406,
+      "errors": 0
+    },
+    {
+      "n": 40,
+      "sql": "{CounterID=62} EventDate:\u003e='2013-07-01' EventDate:\u003c='2013-07-31' IsRefresh:=0 | format if (SearchEngineID:=0 AdvEngineID:=0) '\u003cReferer\u003e' as Src | cp URL Dst | by (TraficSourceID, SearchEngineID, AdvEngineID, Src, Dst) count() PageViews | sort (PageViews desc) limit 10 offset 1_000",
+      "tries": [
+        {
+          "wall_ms": 316.603,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 290.048,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 268.646,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 316.603,
+      "hot_ms": 268.646,
+      "errors": 0
+    },
+    {
+      "n": 41,
+      "sql": "{CounterID=62} EventDate:\u003e='2013-07-01' EventDate:\u003c='2013-07-31' IsRefresh:=0 TraficSourceID:in(-1, 6) RefererHash:=3594120000172545465 | by (URLHash, EventDate) count() PageViews | sort (PageViews desc) limit 10 offset 100",
+      "tries": [
+        {
+          "wall_ms": 30.96,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 25.987,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 31.972,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 30.96,
+      "hot_ms": 25.987,
+      "errors": 0
+    },
+    {
+      "n": 42,
+      "sql": "{CounterID=62} EventDate:\u003e='2013-07-01' EventDate:\u003c='2013-07-31' IsRefresh:=0 DontCountHits:=0 URLHash:=2868770270353813622 | by (WindowClientWidth, WindowClientHeight) count() PageViews | sort (PageViews desc) limit 10 offset 10_000",
+      "tries": [
+        {
+          "wall_ms": 29.442,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 26.62,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 25.169,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 29.442,
+      "hot_ms": 25.169,
+      "errors": 0
+    },
+    {
+      "n": 43,
+      "sql": "{CounterID=62} EventDate:\u003e='2013-07-14' EventDate:\u003c='2013-07-15' IsRefresh:=0 DontCountHits:=0 | math floor(_time / 1m) minute | by (minute) count() PageViews | sort by (minute) limit 10 offset 1_000",
+      "tries": [
+        {
+          "wall_ms": 27.342,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 25.521,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 29.294,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 27.342,
+      "hot_ms": 25.521,
+      "errors": 0
+    }
+  ]
+}
