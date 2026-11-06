@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:0f2ba4b8adb390f89755e88799f64142a4ee95b7628426968bdd29430e949db2",
+  "id": "2026-11-06T231839Z_5110558",
+  "image": "ghcr.io/smolquery/smolquery:sha-5110558ae54c8c0e75c25e4022250412f351fc70",
+  "published_at": "2026-11-06T23:18:39Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/42309112097",
+  "runner": "GitHub Actions 1000002124 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "5110558ae54c8c0e75c25e4022250412f351fc70",
+  "subject": "The disagreement log builds its id list before the message, as the smell check asks (T-328 review)",
+  "trigger": "repository_dispatch"
+}
