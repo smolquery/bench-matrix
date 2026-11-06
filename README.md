@@ -41,7 +41,8 @@ The load bench converts Parquet to NDJSON with the DuckDB CLI on the same
 machine. That conversion shares the CPU with the system under test during the
 load.
 
-The seal time for smolquery ends when the hot tier is empty.
+The seal time for smolquery ends when the hot tier is empty. smolquery does this
+work after it acknowledges the inserts.
 
 ### ClickHouse and VictoriaLogs
 
@@ -50,7 +51,7 @@ as smolquery. The peers use default settings, plus the settings in this table.
 `compose.yaml` pins each version, so a peer number changes only with the runner
 or a deliberate version change. Thus the peers also show the runner noise.
 
-| system | image | insert route | seal time ends when | settings |
+| system | image | insert route | harness waits until | settings |
 |---|---|---|---|---|
 | ClickHouse | `clickhouse/clickhouse-server:26.10.2.103` | `FORMAT JSONEachRow` over HTTP | `system.merges` is empty | The ClickBench table: `MergeTree`, `fsync_after_insert = 1`. |
 | VictoriaLogs | `victoriametrics/victoria-logs:v1.53.0` | `/insert/jsonline` | `vl_active_merges` is 0 after a flush | `-retentionPeriod=20y`, `-search.maxQueryDuration=5m`. |
@@ -58,6 +59,12 @@ or a deliberate version change. Thus the peers also show the runner noise.
 All systems get the same NDJSON: 24 MB bodies over 8 concurrent requests. The
 peer table and queries come from ClickBench commit
 [`ff15af5`](https://github.com/ClickHouse/ClickBench/tree/ff15af5d8aae5ce5ce79b8e479379582f9050fdc).
+
+The peers merge in the background during the load, so the merge time is in their
+load time. The latest-run table leaves the seal cell blank for a peer, because no
+seal step exists to measure. The harness still waits for merges to stop, which
+keeps them out of the query timings. To compare the systems, use `total s`: the
+load time plus the seal time.
 
 To change a peer version, change its image in `compose.yaml`. The results show
 the version of each peer.
@@ -145,11 +152,11 @@ them for a local run. If a port is in use, set `SMOLQUERY_PORT` (4000),
 
 [`5189c5b`](https://github.com/smolquery/smolquery/commit/5189c5bc2aef12a1e2fb5dfd866bf0fcb1afb368) on 2026-11-06: **ok** ([workflow run](https://github.com/smolquery/bench-matrix/actions/runs/42265343156))
 
-| system | version | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| smolquery | [`5189c5b`](https://github.com/smolquery/smolquery/commit/5189c5bc2aef12a1e2fb5dfd866bf0fcb1afb368) | ok | 120.9 | 82703 | 69.5 | 43/43 | 33.54 | 33.35 | 633 |
-| ClickHouse | 26.10.2.103 | ok | 82.2 | 121726 | 0.0 | 43/43 | 4.19 | 3.31 | 32 |
-| VictoriaLogs | v1.53.0 | ok | 145.9 | 68552 | 0.0 | 43/43 | 28.34 | 27.27 | 147 |
+| system | version | status | load s | rows/s | seal s | total s | passed | first sum s | hot sum s | hot geomean ms |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| smolquery | [`5189c5b`](https://github.com/smolquery/smolquery/commit/5189c5bc2aef12a1e2fb5dfd866bf0fcb1afb368) | ok | 120.9 | 82703 | 69.5 | 190.4 | 43/43 | 33.54 | 33.35 | 633 |
+| ClickHouse | 26.10.2.103 | ok | 82.2 | 121726 |  | 82.2 | 43/43 | 4.19 | 3.31 | 32 |
+| VictoriaLogs | v1.53.0 | ok | 145.9 | 68552 |  | 145.9 | 43/43 | 28.34 | 27.27 | 147 |
 
 ### History
 

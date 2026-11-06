@@ -11,7 +11,7 @@ Each bench run also benches ClickHouse and VictoriaLogs on the same runner, with
 - **Same ingest path.** All systems get the same NDJSON from the DuckDB conversion: 24 MB bodies over 8 concurrent HTTP requests. ClickHouse uses `FORMAT JSONEachRow`. VictoriaLogs uses `/insert/jsonline`.
 - **Same memory limit.** Each peer container gets the 12 GB limit.
 - **Upstream queries and schema.** The peer queries and the ClickHouse table come from ClickHouse/ClickBench at `ff15af5`. LogsQL is a translation, so answers can differ. Local validation compares them.
-- **The seal column for peers.** It holds the time until background merges stop. This keeps merges out of the query timings.
+- **The seal column for peers.** The peers merge during the load, so the merge time is in the load time. The harness waits for merges to stop, which keeps them out of the query timings. The latest-run table leaves the peer seal cell blank and adds `total s` (load plus seal).
 - **A peer failure does not stop the publish.** The workflow publishes all results, then fails.
 - **Known difference.** smolquery reads from object storage with a file cache. The peers read from a local Docker volume. The README states this.
 

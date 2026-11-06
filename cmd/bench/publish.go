@@ -228,12 +228,12 @@ func renderResults(history []historyEntry, latest, previous *queryRun, peerQueri
 	}
 	fmt.Fprintf(&b, "\n\n")
 
-	fmt.Fprintf(&b, "| system | version | status | load s | rows/s | seal s | passed | first sum s | hot sum s | hot geomean ms |\n")
-	fmt.Fprintf(&b, "|---|---|---|---:|---:|---:|---:|---:|---:|---:|\n")
-	writeSystemRow(&b, "smolquery", commitLink(last.SHA), last.systemSummary)
+	fmt.Fprintf(&b, "| system | version | status | load s | rows/s | seal s | total s | passed | first sum s | hot sum s | hot geomean ms |\n")
+	fmt.Fprintf(&b, "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|\n")
+	writeSystemRow(&b, "smolquery", commitLink(last.SHA), fmt.Sprintf("%.1f", last.SealS), last.systemSummary)
 	for _, p := range peers {
 		if s, ok := last.Peers[p.id]; ok {
-			writeSystemRow(&b, p.label, s.Version, s)
+			writeSystemRow(&b, p.label, s.Version, "", s)
 		}
 	}
 	fmt.Fprintf(&b, "\n")
@@ -288,9 +288,9 @@ func renderResults(history []historyEntry, latest, previous *queryRun, peerQueri
 	return b.String()
 }
 
-func writeSystemRow(b *strings.Builder, label, version string, s systemSummary) {
-	fmt.Fprintf(b, "| %s | %s | %s | %.1f | %.0f | %.1f | %d/%d | %.2f | %.2f | %.0f |\n",
-		label, version, s.Status, s.IngestS, s.IngestRowsPerS, s.SealS,
+func writeSystemRow(b *strings.Builder, label, version, seal string, s systemSummary) {
+	fmt.Fprintf(b, "| %s | %s | %s | %.1f | %.0f | %s | %.1f | %d/%d | %.2f | %.2f | %.0f |\n",
+		label, version, s.Status, s.IngestS, s.IngestRowsPerS, seal, s.IngestS+s.SealS,
 		s.QueriesPassed, s.QueriesTotal, s.FirstSumS, s.HotSumS, s.HotGeomeanMs)
 }
 
