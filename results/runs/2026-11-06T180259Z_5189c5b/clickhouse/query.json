@@ -1,0 +1,1437 @@
+{
+  "started_at": "2026-11-06T17:58:27Z",
+  "finished_at": "2026-11-06T17:58:38Z",
+  "ref": "hits",
+  "tries": 3,
+  "options": {
+    "timeoutMs": 300000
+  },
+  "summary": {
+    "queries": 43,
+    "passed": 43,
+    "first_sum_s": 4.186026,
+    "hot_sum_s": 3.3147360000000003,
+    "hot_geomean_ms": 31.993946610711507
+  },
+  "queries": [
+    {
+      "n": 1,
+      "sql": "SELECT COUNT(*) FROM hits;",
+      "tries": [
+        {
+          "wall_ms": 2.733,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.774,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.48,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 2.733,
+      "hot_ms": 1.48,
+      "errors": 0
+    },
+    {
+      "n": 2,
+      "sql": "SELECT COUNT(*) FROM hits WHERE AdvEngineID \u003c\u003e 0;",
+      "tries": [
+        {
+          "wall_ms": 1.459,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.298,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.288,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 1.459,
+      "hot_ms": 1.288,
+      "errors": 0
+    },
+    {
+      "n": 3,
+      "sql": "SELECT SUM(AdvEngineID), COUNT(*), AVG(ResolutionWidth) FROM hits;",
+      "tries": [
+        {
+          "wall_ms": 9.449,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 7.955,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 8.539,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 9.449,
+      "hot_ms": 7.955,
+      "errors": 0
+    },
+    {
+      "n": 4,
+      "sql": "SELECT AVG(UserID) FROM hits;",
+      "tries": [
+        {
+          "wall_ms": 10.043,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 9.33,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 9.278,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 10.043,
+      "hot_ms": 9.278,
+      "errors": 0
+    },
+    {
+      "n": 5,
+      "sql": "SELECT COUNT(DISTINCT UserID) FROM hits;",
+      "tries": [
+        {
+          "wall_ms": 43.063,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 37.77,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 37.573,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 43.063,
+      "hot_ms": 37.573,
+      "errors": 0
+    },
+    {
+      "n": 6,
+      "sql": "SELECT COUNT(DISTINCT SearchPhrase) FROM hits;",
+      "tries": [
+        {
+          "wall_ms": 132.083,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 121.028,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 120.258,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 132.083,
+      "hot_ms": 120.258,
+      "errors": 0
+    },
+    {
+      "n": 7,
+      "sql": "SELECT MIN(EventDate), MAX(EventDate) FROM hits;",
+      "tries": [
+        {
+          "wall_ms": 4.994,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 3.945,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 3.307,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 4.994,
+      "hot_ms": 3.307,
+      "errors": 0
+    },
+    {
+      "n": 8,
+      "sql": "SELECT AdvEngineID, COUNT(*) FROM hits WHERE AdvEngineID \u003c\u003e 0 GROUP BY AdvEngineID ORDER BY COUNT(*) DESC;",
+      "tries": [
+        {
+          "wall_ms": 6.441,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 6.152,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 5.63,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 6.441,
+      "hot_ms": 5.63,
+      "errors": 0
+    },
+    {
+      "n": 9,
+      "sql": "SELECT RegionID, COUNT(DISTINCT UserID) AS u FROM hits GROUP BY RegionID ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 68.582,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 69.691,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 69.268,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 68.582,
+      "hot_ms": 69.268,
+      "errors": 0
+    },
+    {
+      "n": 10,
+      "sql": "SELECT RegionID, SUM(AdvEngineID), COUNT(*) AS c, AVG(ResolutionWidth), COUNT(DISTINCT UserID) FROM hits GROUP BY RegionID ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 104.598,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 86.126,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 84.579,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 104.598,
+      "hot_ms": 84.579,
+      "errors": 0
+    },
+    {
+      "n": 11,
+      "sql": "SELECT MobilePhoneModel, COUNT(DISTINCT UserID) AS u FROM hits WHERE MobilePhoneModel \u003c\u003e '' GROUP BY MobilePhoneModel ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 18.753,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 20.253,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 18.268,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 18.753,
+      "hot_ms": 18.268,
+      "errors": 0
+    },
+    {
+      "n": 12,
+      "sql": "SELECT MobilePhone, MobilePhoneModel, COUNT(DISTINCT UserID) AS u FROM hits WHERE MobilePhoneModel \u003c\u003e '' GROUP BY MobilePhone, MobilePhoneModel ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 21.508,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 22.461,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 21.9,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 21.508,
+      "hot_ms": 21.9,
+      "errors": 0
+    },
+    {
+      "n": 13,
+      "sql": "SELECT SearchPhrase, COUNT(*) AS c FROM hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 89.613,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 87.279,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 87.586,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 89.613,
+      "hot_ms": 87.279,
+      "errors": 0
+    },
+    {
+      "n": 14,
+      "sql": "SELECT SearchPhrase, COUNT(DISTINCT UserID) AS u FROM hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY u DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 110.276,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 114.331,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 108.218,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 110.276,
+      "hot_ms": 108.218,
+      "errors": 0
+    },
+    {
+      "n": 15,
+      "sql": "SELECT SearchEngineID, SearchPhrase, COUNT(*) AS c FROM hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchEngineID, SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 102.957,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 102.72,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 102.34,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 102.957,
+      "hot_ms": 102.34,
+      "errors": 0
+    },
+    {
+      "n": 16,
+      "sql": "SELECT UserID, COUNT(*) FROM hits GROUP BY UserID ORDER BY COUNT(*) DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 41.926,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 41.995,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 42.64,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 41.926,
+      "hot_ms": 41.995,
+      "errors": 0
+    },
+    {
+      "n": 17,
+      "sql": "SELECT UserID, SearchPhrase, COUNT(*) FROM hits GROUP BY UserID, SearchPhrase ORDER BY COUNT(*) DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 160.301,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 161.259,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 157.062,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 160.301,
+      "hot_ms": 157.062,
+      "errors": 0
+    },
+    {
+      "n": 18,
+      "sql": "SELECT UserID, SearchPhrase, COUNT(*) FROM hits GROUP BY UserID, SearchPhrase LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 8.471,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 7.095,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 6.684,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 8.471,
+      "hot_ms": 6.684,
+      "errors": 0
+    },
+    {
+      "n": 19,
+      "sql": "SELECT UserID, extract(minute FROM EventTime) AS m, SearchPhrase, COUNT(*) FROM hits GROUP BY UserID, m, SearchPhrase ORDER BY COUNT(*) DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 233.602,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 227.678,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 230.894,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 233.602,
+      "hot_ms": 227.678,
+      "errors": 0
+    },
+    {
+      "n": 20,
+      "sql": "SELECT UserID FROM hits WHERE UserID = 435090932899640449;",
+      "tries": [
+        {
+          "wall_ms": 7.313,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 2.285,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 1.981,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 7.313,
+      "hot_ms": 1.981,
+      "errors": 0
+    },
+    {
+      "n": 21,
+      "sql": "SELECT COUNT(*) FROM hits WHERE URL LIKE '%google%';",
+      "tries": [
+        {
+          "wall_ms": 176.271,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 61.463,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 60.228,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 176.271,
+      "hot_ms": 60.228,
+      "errors": 0
+    },
+    {
+      "n": 22,
+      "sql": "SELECT SearchPhrase, MIN(URL), COUNT(*) AS c FROM hits WHERE URL LIKE '%google%' AND SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 218.811,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 21.84,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 22.153,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 218.811,
+      "hot_ms": 21.84,
+      "errors": 0
+    },
+    {
+      "n": 23,
+      "sql": "SELECT SearchPhrase, MIN(URL), MIN(Title), COUNT(*) AS c, COUNT(DISTINCT UserID) FROM hits WHERE Title LIKE '%Google%' AND URL NOT LIKE '%.google.%' AND SearchPhrase \u003c\u003e '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 442.857,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 195.512,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 198.588,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 442.857,
+      "hot_ms": 195.512,
+      "errors": 0
+    },
+    {
+      "n": 24,
+      "sql": "SELECT * FROM hits WHERE URL LIKE '%google%' ORDER BY EventTime LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 89.4,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 56.647,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 52.393,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 89.4,
+      "hot_ms": 52.393,
+      "errors": 0
+    },
+    {
+      "n": 25,
+      "sql": "SELECT SearchPhrase FROM hits WHERE SearchPhrase \u003c\u003e '' ORDER BY EventTime LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 28.639,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 8.477,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 6.314,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 28.639,
+      "hot_ms": 6.314,
+      "errors": 0
+    },
+    {
+      "n": 26,
+      "sql": "SELECT SearchPhrase FROM hits WHERE SearchPhrase \u003c\u003e '' ORDER BY SearchPhrase LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 46.487,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 47.221,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 47.263,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 46.487,
+      "hot_ms": 47.221,
+      "errors": 0
+    },
+    {
+      "n": 27,
+      "sql": "SELECT SearchPhrase FROM hits WHERE SearchPhrase \u003c\u003e '' ORDER BY EventTime, SearchPhrase LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 30.508,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 16.977,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 9.647,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 30.508,
+      "hot_ms": 9.647,
+      "errors": 0
+    },
+    {
+      "n": 28,
+      "sql": "SELECT CounterID, AVG(length(URL)) AS l, COUNT(*) AS c FROM hits WHERE URL \u003c\u003e '' GROUP BY CounterID HAVING COUNT(*) \u003e 100000 ORDER BY l DESC LIMIT 25;",
+      "tries": [
+        {
+          "wall_ms": 38.331,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 35.784,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 35.829,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 38.331,
+      "hot_ms": 35.784,
+      "errors": 0
+    },
+    {
+      "n": 29,
+      "sql": "SELECT REGEXP_REPLACE(Referer, '^https?://(?:www\\.)?([^/]+)/.*$', '\\1') AS k, AVG(length(Referer)) AS l, COUNT(*) AS c, MIN(Referer) FROM hits WHERE Referer \u003c\u003e '' GROUP BY k HAVING COUNT(*) \u003e 100000 ORDER BY l DESC LIMIT 25;",
+      "tries": [
+        {
+          "wall_ms": 456.129,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 391.922,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 384.318,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 456.129,
+      "hot_ms": 384.318,
+      "errors": 0
+    },
+    {
+      "n": 30,
+      "sql": "SELECT SUM(ResolutionWidth), SUM(ResolutionWidth + 1), SUM(ResolutionWidth + 2), SUM(ResolutionWidth + 3), SUM(ResolutionWidth + 4), SUM(ResolutionWidth + 5), SUM(ResolutionWidth + 6), SUM(ResolutionWidth + 7), SUM(ResolutionWidth + 8), SUM(ResolutionWidth + 9), SUM(ResolutionWidth + 10), SUM(ResolutionWidth + 11), SUM(ResolutionWidth + 12), SUM(ResolutionWidth + 13), SUM(ResolutionWidth + 14), SUM(ResolutionWidth + 15), SUM(ResolutionWidth + 16), SUM(ResolutionWidth + 17), SUM(ResolutionWidth + 18), SUM(ResolutionWidth + 19), SUM(ResolutionWidth + 20), SUM(ResolutionWidth + 21), SUM(ResolutionWidth + 22), SUM(ResolutionWidth + 23), SUM(ResolutionWidth + 24), SUM(ResolutionWidth + 25), SUM(ResolutionWidth + 26), SUM(ResolutionWidth + 27), SUM(ResolutionWidth + 28), SUM(ResolutionWidth + 29), SUM(ResolutionWidth + 30), SUM(ResolutionWidth + 31), SUM(ResolutionWidth + 32), SUM(ResolutionWidth + 33), SUM(ResolutionWidth + 34), SUM(ResolutionWidth + 35), SUM(ResolutionWidth + 36), SUM(ResolutionWidth + 37), SUM(ResolutionWidth + 38), SUM(ResolutionWidth + 39), SUM(ResolutionWidth + 40), SUM(ResolutionWidth + 41), SUM(ResolutionWidth + 42), SUM(ResolutionWidth + 43), SUM(ResolutionWidth + 44), SUM(ResolutionWidth + 45), SUM(ResolutionWidth + 46), SUM(ResolutionWidth + 47), SUM(ResolutionWidth + 48), SUM(ResolutionWidth + 49), SUM(ResolutionWidth + 50), SUM(ResolutionWidth + 51), SUM(ResolutionWidth + 52), SUM(ResolutionWidth + 53), SUM(ResolutionWidth + 54), SUM(ResolutionWidth + 55), SUM(ResolutionWidth + 56), SUM(ResolutionWidth + 57), SUM(ResolutionWidth + 58), SUM(ResolutionWidth + 59), SUM(ResolutionWidth + 60), SUM(ResolutionWidth + 61), SUM(ResolutionWidth + 62), SUM(ResolutionWidth + 63), SUM(ResolutionWidth + 64), SUM(ResolutionWidth + 65), SUM(ResolutionWidth + 66), SUM(ResolutionWidth + 67), SUM(ResolutionWidth + 68), SUM(ResolutionWidth + 69), SUM(ResolutionWidth + 70), SUM(ResolutionWidth + 71), SUM(ResolutionWidth + 72), SUM(ResolutionWidth + 73), SUM(ResolutionWidth + 74), SUM(ResolutionWidth + 75), SUM(ResolutionWidth + 76), SUM(ResolutionWidth + 77), SUM(ResolutionWidth + 78), SUM(ResolutionWidth + 79), SUM(ResolutionWidth + 80), SUM(ResolutionWidth + 81), SUM(ResolutionWidth + 82), SUM(ResolutionWidth + 83), SUM(ResolutionWidth + 84), SUM(ResolutionWidth + 85), SUM(ResolutionWidth + 86), SUM(ResolutionWidth + 87), SUM(ResolutionWidth + 88), SUM(ResolutionWidth + 89) FROM hits;",
+      "tries": [
+        {
+          "wall_ms": 15.661,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 15.573,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 13.785,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 15.661,
+      "hot_ms": 13.785,
+      "errors": 0
+    },
+    {
+      "n": 31,
+      "sql": "SELECT SearchEngineID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM hits WHERE SearchPhrase \u003c\u003e '' GROUP BY SearchEngineID, ClientIP ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 62.844,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 63.754,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 63.421,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 62.844,
+      "hot_ms": 63.421,
+      "errors": 0
+    },
+    {
+      "n": 32,
+      "sql": "SELECT WatchID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM hits WHERE SearchPhrase \u003c\u003e '' GROUP BY WatchID, ClientIP ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 86.925,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 65.687,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 65.577,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 86.925,
+      "hot_ms": 65.577,
+      "errors": 0
+    },
+    {
+      "n": 33,
+      "sql": "SELECT WatchID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM hits GROUP BY WatchID, ClientIP ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 186.675,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 178.693,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 178.188,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 186.675,
+      "hot_ms": 178.188,
+      "errors": 0
+    },
+    {
+      "n": 34,
+      "sql": "SELECT URL, COUNT(*) AS c FROM hits GROUP BY URL ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 421.139,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 414.387,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 398.461,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 421.139,
+      "hot_ms": 398.461,
+      "errors": 0
+    },
+    {
+      "n": 35,
+      "sql": "SELECT 1, URL, COUNT(*) AS c FROM hits GROUP BY 1, URL ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 399.352,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 390.33,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 394.598,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 399.352,
+      "hot_ms": 390.33,
+      "errors": 0
+    },
+    {
+      "n": 36,
+      "sql": "SELECT ClientIP, ClientIP - 1, ClientIP - 2, ClientIP - 3, COUNT(*) AS c FROM hits GROUP BY ClientIP, ClientIP - 1, ClientIP - 2, ClientIP - 3 ORDER BY c DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 43.131,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 42.169,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 43.943,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 43.131,
+      "hot_ms": 42.169,
+      "errors": 0
+    },
+    {
+      "n": 37,
+      "sql": "SELECT URL, COUNT(*) AS PageViews FROM hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND DontCountHits = 0 AND IsRefresh = 0 AND URL \u003c\u003e '' GROUP BY URL ORDER BY PageViews DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 47.199,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 46.532,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 54.019,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 47.199,
+      "hot_ms": 46.532,
+      "errors": 0
+    },
+    {
+      "n": 38,
+      "sql": "SELECT Title, COUNT(*) AS PageViews FROM hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND DontCountHits = 0 AND IsRefresh = 0 AND Title \u003c\u003e '' GROUP BY Title ORDER BY PageViews DESC LIMIT 10;",
+      "tries": [
+        {
+          "wall_ms": 25.999,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 25.806,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 26.108,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 25.999,
+      "hot_ms": 25.806,
+      "errors": 0
+    },
+    {
+      "n": 39,
+      "sql": "SELECT URL, COUNT(*) AS PageViews FROM hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 AND IsLink \u003c\u003e 0 AND IsDownload = 0 GROUP BY URL ORDER BY PageViews DESC LIMIT 10 OFFSET 1000;",
+      "tries": [
+        {
+          "wall_ms": 29.217,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 29.742,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 24.171,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 29.217,
+      "hot_ms": 24.171,
+      "errors": 0
+    },
+    {
+      "n": 40,
+      "sql": "SELECT TraficSourceID, SearchEngineID, AdvEngineID, CASE WHEN (SearchEngineID = 0 AND AdvEngineID = 0) THEN Referer ELSE '' END AS Src, URL AS Dst, COUNT(*) AS PageViews FROM hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 GROUP BY TraficSourceID, SearchEngineID, AdvEngineID, Src, Dst ORDER BY PageViews DESC LIMIT 10 OFFSET 1000;",
+      "tries": [
+        {
+          "wall_ms": 128.175,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 129.089,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 109.925,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 128.175,
+      "hot_ms": 109.925,
+      "errors": 0
+    },
+    {
+      "n": 41,
+      "sql": "SELECT URLHash, EventDate, COUNT(*) AS PageViews FROM hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 AND TraficSourceID IN (-1, 6) AND RefererHash = 3594120000172545465 GROUP BY URLHash, EventDate ORDER BY PageViews DESC LIMIT 10 OFFSET 100;",
+      "tries": [
+        {
+          "wall_ms": 14.882,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 12.163,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 13.133,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 14.882,
+      "hot_ms": 12.163,
+      "errors": 0
+    },
+    {
+      "n": 42,
+      "sql": "SELECT WindowClientWidth, WindowClientHeight, COUNT(*) AS PageViews FROM hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-01' AND EventDate \u003c= '2013-07-31' AND IsRefresh = 0 AND DontCountHits = 0 AND URLHash = 2868770270353813622 GROUP BY WindowClientWidth, WindowClientHeight ORDER BY PageViews DESC LIMIT 10 OFFSET 10000;",
+      "tries": [
+        {
+          "wall_ms": 11.179,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 9.607,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 9.451,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 11.179,
+      "hot_ms": 9.451,
+      "errors": 0
+    },
+    {
+      "n": 43,
+      "sql": "SELECT DATE_TRUNC('minute', EventTime) AS M, COUNT(*) AS PageViews FROM hits WHERE CounterID = 62 AND EventDate \u003e= '2013-07-14' AND EventDate \u003c= '2013-07-15' AND IsRefresh = 0 AND DontCountHits = 0 GROUP BY DATE_TRUNC('minute', EventTime) ORDER BY DATE_TRUNC('minute', EventTime) LIMIT 10 OFFSET 1000;",
+      "tries": [
+        {
+          "wall_ms": 8.05,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 7.479,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        },
+        {
+          "wall_ms": 7.968,
+          "duration_ms": null,
+          "total_rows": null,
+          "file_cache": null,
+          "scatter": null,
+          "status": 200
+        }
+      ],
+      "first_ms": 8.05,
+      "hot_ms": 7.479,
+      "errors": 0
+    }
+  ]
+}

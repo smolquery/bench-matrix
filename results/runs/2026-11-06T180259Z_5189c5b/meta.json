@@ -1,0 +1,11 @@
+{
+  "digest": "ghcr.io/smolquery/smolquery@sha256:8d211fb1b4fc5fb049d18705ec0d451fb32cd85db32d864470156c02e6a81bda",
+  "id": "2026-11-06T180259Z_5189c5b",
+  "image": "ghcr.io/smolquery/smolquery:sha-5189c5bc2aef12a1e2fb5dfd866bf0fcb1afb368",
+  "published_at": "2026-11-06T18:02:59Z",
+  "run_url": "https://github.com/smolquery/bench-matrix/actions/runs/42265343156",
+  "runner": "GitHub Actions 1000002101 (linux/amd64, 4 vCPU, 16 GiB)",
+  "sha": "5189c5bc2aef12a1e2fb5dfd866bf0fcb1afb368",
+  "subject": "Clusters keep their planning order, and one pod reports why a burst did not run (T-769 review)",
+  "trigger": "repository_dispatch"
+}
